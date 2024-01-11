@@ -11,6 +11,7 @@ func main() {
 	routeGroup := r.Group("/v1") 
 	{
 		routeGroup.GET("/home",home.GetHome)
+		routeGroup.GET("/modelProcessing",home.RunModel)
 	}
 	r.Run("localhost:8080")
 }
