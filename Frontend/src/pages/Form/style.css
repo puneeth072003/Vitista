@@ -1,0 +1,11 @@
+@media (max-width: 850px) {
+  div[data-place="form"] {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  section[data-place="form"] {
+    width: 95%;
+    align-self: center;
+  }
+}
