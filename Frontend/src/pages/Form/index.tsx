@@ -151,7 +151,7 @@ function Form() {
                 <FormSelect period={period} setPeriod={setPeriod} />
               </div>
               <div className="grid max-w-sm items-center gap-1.5">
-                <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]">
+                <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6] hover:text-[0.95rem] transition-[font-size]">
                   Create Register
                 </Button>
               </div>

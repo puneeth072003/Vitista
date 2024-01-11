@@ -36,7 +36,7 @@ function BottomDrawer({ children }: { children: React.ReactNode }) {
             </div>
             <DrawerFooter>
               <DrawerClose asChild>
-                <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6] font-[Poppins] hover:text-[0.95rem] transition-[transform] w-[5rem] m-auto">
+                <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6] font-[Poppins] hover:text-[0.95rem] transition-[font-size] w-[5rem] m-auto">
                   Okay
                 </Button>
               </DrawerClose>
