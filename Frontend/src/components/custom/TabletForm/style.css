@@ -1,0 +1,5 @@
+@media (max-width: 850px) {
+  section[data-place="tabletForm"] {
+    width: 95%;
+  }
+}
