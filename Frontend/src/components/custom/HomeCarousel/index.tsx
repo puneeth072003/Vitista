@@ -7,18 +7,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { useEffect, useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
+
+import { useRef } from "react";
 
 function HomeCarousel() {
   const carouselButton = useRef<HTMLButtonElement | null>(null);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      carouselButton.current?.click();
-    }, 5000);
-
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <>
@@ -27,6 +21,11 @@ function HomeCarousel() {
           align: "start",
           loop: true,
         }}
+        plugins={[
+          Autoplay({
+            delay: 5000,
+          }),
+        ]}
         orientation="vertical"
         className="w-full"
       >
