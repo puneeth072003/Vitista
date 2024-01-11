@@ -19,7 +19,7 @@ function Header() {
   return (
     <>
       <header className="flex justify-between items-center pt-[1rem] px-[7vw] pb-[1rem]">
-        <div>
+        <div className="max-[630px]:hidden">
           <a
             className="flex justify-center items-center gap-[0.5rem]"
             href="https://github.com/puneeth072003/GfG-hackthon-project"
@@ -30,7 +30,7 @@ function Header() {
             </h1>
           </a>
         </div>
-        <div>
+        <div  className="max-[630px]:w-full max-[630px]:flex max-[630px]:justify-evenly">
           <NavigationMenu>
             <NavigationMenuList className="gap-[3rem]">
               <NavigationMenuItem>
@@ -42,7 +42,7 @@ function Header() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink className="font-medium">
-                  <NavLink to={"/algorithms"} className="underline-effect">
+                  <NavLink to={"/algorithms"} className="underline-effect text-center">
                     Risk Assessments
                   </NavLink>
                 </NavigationMenuLink>

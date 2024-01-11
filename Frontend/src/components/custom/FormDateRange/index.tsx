@@ -28,17 +28,19 @@ export default function FormDateRange({
             id="date"
             variant={"outline"}
             className={cn(
-              "w-[300px] justify-start text-left font-normal",
+              "w-[90%] justify-start text-left font-normal px-3",
               !date && "text-muted-foreground"
             )}
             style={{ backgroundColor: "transparent" }}
           >
-            <CalendarIcon className="mr-2 h-4 w-4" />
+            <CalendarIcon className="mr-2 h-4 w-4 max-[500px]:hidden" />
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
+                  <span className="max-[500px]:text-[0.9rem]">
+                    {format(date.from, "LLL dd, y")} -{" "}
+                    {format(date.to, "LLL dd, y")}
+                  </span>
                 </>
               ) : (
                 format(date.from, "LLL dd, y")
