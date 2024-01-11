@@ -43,7 +43,7 @@ function Header() {
               <NavigationMenuItem>
                 <NavigationMenuLink className="font-medium">
                   <NavLink to={"/algorithms"} className="underline-effect">
-                    Algorithms
+                    Risk Assessments
                   </NavLink>
                 </NavigationMenuLink>
               </NavigationMenuItem>
