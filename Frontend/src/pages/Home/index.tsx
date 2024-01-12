@@ -24,10 +24,10 @@ function Home() {
     <>
       <main
         data-place="home"
-        className="mt-[7rem] flex px-[7vw] justify-between flex-wrap"
+        className="mt-[7rem] flex gap-[7vw] justify-between"
       >
         <section
-          data-place="home"
+          data-place="home-1"
           className="flex flex-col gap-[2rem] w-[38vw]"
         >
           <h3 className="text-[1.8rem] font-[Rubik] tracking-[-0.07rem] font-[1000]">
@@ -54,7 +54,10 @@ function Home() {
             <BottomDrawer children={DrawerButton} />
           </div>
         </section>
-        <section className="flex justify-center items-center w-[35vw] min-w-[35vw]">
+        <section
+          data-place="home-2"
+          className="flex justify-center items-center w-[35vw] min-w-[35vw]"
+        >
           <div>
             <HomeCarousel />
           </div>

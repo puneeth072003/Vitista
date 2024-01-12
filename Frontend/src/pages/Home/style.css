@@ -13,18 +13,21 @@
     align-items: center;
     gap: 7rem;
   }
-  section[data-place="home"] {
+  section[data-place="home-1"] {
     align-items: center;
     width: 75%;
   }
-  section[data-place="home"] h3,
+  section[data-place="home-1"] h3,
   h1,
   p {
     text-align: center;
     width: 75%;
   }
-  section[data-place="home"] div {
+  section[data-place="home-1"] div {
     flex-direction: column;
     justify-content: center;
+  }
+  section[data-place="home-2"] {
+    width: 80%;
   }
 }
