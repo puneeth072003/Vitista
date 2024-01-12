@@ -1,17 +1,27 @@
 import "./App.css";
-import { useAppDispatch, useAppSelector } from "./redux/hooks";
-import { increment, decrement } from "./redux/slices/sample";
+
+import { Route, Routes } from "react-router-dom";
+
+import { Toaster } from "@/components/ui/sonner";
+
+import Header from "@/components/custom/Header";
+import Home from "@/pages/Home";
+import Form from "@/pages/Form";
+import Record from "@/pages/Record";
+import Test from "@/pages/Test";
 
 function App() {
-  const counter = useAppSelector((state) => state.sample);
-  const dispatch = useAppDispatch();
-
   return (
     <>
-      <h1 className="text-[3rem] text-[red]">Hello World</h1>
-      <h3>Count is {counter}</h3>
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
+      <Header />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/record" element={<Record />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/test" element={<Test />} />
+      </Routes>
+      <Toaster />
     </>
   );
 }
