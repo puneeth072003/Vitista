@@ -8,113 +8,61 @@ import { FormEvent } from "react";
 
 import { toast } from "sonner";
 
-import { DateRange } from "react-day-picker";
+import { IPayload, IProps } from "@/interface";
 
+import { useDispatch } from "react-redux";
+
+import logo from "@/assets/icon.png";
 import FormDateRange from "@/components/custom/FormDateRange";
 import FormSelect from "@/components/custom/FormSelect";
 import FormTimePicker from "@/components/custom/FormTimePicker";
-
-import logo from "@/assets/icon.png";
-import './style.css'
-
-interface IProps {
-  time: Date | undefined;
-  setTime: React.Dispatch<React.SetStateAction<Date | undefined>>;
-  tablet: string | undefined;
-  setTablet: React.Dispatch<React.SetStateAction<string | undefined>>;
-  period: string;
-  setPeriod: React.Dispatch<React.SetStateAction<string>>;
-  date: DateRange | undefined;
-  setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
-}
+import "./style.css";
+import { addedData } from "@/redux/slices/formPayload";
 
 const BACKEND_URL = import.meta.env.BACKEND_URL;
 
-interface IPayload {
-  tablet: string | undefined;
-  date_range: {
-    from: {
-      date: number | undefined;
-      month: number | undefined;
-      year: number | undefined;
-    };
-    to: {
-      date: number | undefined;
-      month: number | undefined;
-      year: number | undefined;
-    };
-  };
-  period: string;
-  time: {
-    hour: number | undefined;
-    min: number | undefined;
-  };
-}
-
 function customToast(payload: IPayload) {
-  const startDateObject = payload?.date_range?.from;
-  const endDateObject = payload?.date_range?.to;
-
   if (
-    startDateObject.date !== undefined &&
-    startDateObject.month !== undefined &&
-    startDateObject.year !== undefined &&
-    endDateObject.date !== undefined &&
-    endDateObject.month !== undefined &&
-    endDateObject.year !== undefined
-  ) {
-    const startDate = new Date(
-      startDateObject.year,
-      startDateObject.month,
-      startDateObject.date
-    );
-    const endDate = new Date(
-      endDateObject.year,
-      endDateObject.month,
-      endDateObject.date
-    );
+    payload.date_range.from === undefined ||
+    payload.date_range.to === undefined
+  )
+    return;
 
-    toast("Your Tablet Course has been Registered", {
-      description: `Tablet Course from ${startDate.toLocaleString("default", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })} to ${endDate.toLocaleString("default", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })}`,
-    });
-  }
+  const startDate = new Date(payload.date_range.from);
+  const endDate = new Date(payload.date_range.to);
+
+  toast("Your Tablet Course has been Registered", {
+    description: `Tablet Course from ${startDate.toLocaleString("default", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    })} to ${endDate.toLocaleString("default", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    })}`,
+  });
 }
 
 function TabletForm({ tabletFormProps }: { tabletFormProps: IProps }) {
+  const dispatch = useDispatch();
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const payload = {
       tablet: tabletFormProps.tablet,
       date_range: {
-        from: {
-          date: tabletFormProps.date?.from?.getDate(),
-          month: tabletFormProps.date?.from?.getMonth(),
-          year: tabletFormProps.date?.from?.getFullYear(),
-        },
-        to: {
-          date: tabletFormProps.date?.to?.getDate(),
-          month: tabletFormProps.date?.to?.getMonth(),
-          year: tabletFormProps.date?.to?.getFullYear(),
-        },
+        from: tabletFormProps.date?.from?.toString(),
+        to: tabletFormProps.date?.to?.toString(),
       },
       period: tabletFormProps.period,
-      time: {
-        hour: tabletFormProps.time?.getHours(),
-        min: tabletFormProps.time?.getMinutes(),
-      },
+      time: tabletFormProps.time?.toString(),
     };
 
     await axios
       .post(`${BACKEND_URL}/api/v1/randomShit`, payload)
+      .then(() => dispatch(addedData(payload)))
       .then(() => customToast(payload));
   };
   return (

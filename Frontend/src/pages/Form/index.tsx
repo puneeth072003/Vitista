@@ -6,33 +6,18 @@ import { Separator } from "@/components/ui/separator";
 import { addDays } from "date-fns";
 import { DateRange } from "react-day-picker";
 
-import TabletForm from "@/components/custom/TabletForm";
 import axios from "axios";
 
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { dataFetch, reset } from "@/redux/slices/formPayload";
+
+import { IPayload } from "@/interface";
+
+import TabletForm from "@/components/custom/TabletForm";
 import "./style.css";
 
 const BACKEND_URL = import.meta.env.BACKEND_URL;
-
-interface IPayload {
-  tablet: string | undefined;
-  date_range: {
-    from: {
-      date: number | undefined;
-      month: number | undefined;
-      year: number | undefined;
-    };
-    to: {
-      date: number | undefined;
-      month: number | undefined;
-      year: number | undefined;
-    };
-  };
-  period: string;
-  time: {
-    hour: number | undefined;
-    min: number | undefined;
-  };
-}
 
 function Form() {
   const [time, setTime] = useState<Date>();
@@ -54,16 +39,23 @@ function Form() {
     setDate,
   };
 
+  const dispatch = useDispatch();
+
+  const payload = useSelector((state: RootState) => state.formPayload);
+
   useEffect(() => {
     async () => {
       await axios
         .get<IPayload[]>(`${BACKEND_URL}/api/v1/randomShit2`)
-        .then((res) => setPayload(res.data));
+        .then((res) => dispatch(dataFetch(res.data)));
     };
-  }, []);
 
-  const [payload, setPayload] = useState<IPayload[]>([]);
-
+    return () => {
+      if (reset) {
+        dispatch(reset());
+      }
+    };
+  }, [dispatch]);
   return (
     <>
       <div
@@ -74,22 +66,71 @@ function Form() {
         <section data-place="form" className="w-[30%] self-start">
           <ScrollArea className="h-full w-full rounded-md border shadow shadow-[#00000017] bg-[#00000005]">
             <div className="p-4">
-              <h4 className="mb-4 text-sm font-medium leading-none text-center">
+              <h4 className="mb-5 text-sm font-bold text-[1rem] leading-none text-center font-[Ubuntu]">
                 Registered Tablets
               </h4>
-              {payload.map((elem) => (
+              <Separator className="my-2" />
+              {payload.length === 0 ? (
                 <>
-                  <div
-                    key={elem.tablet}
-                    className="text-sm flex justify-between items-center"
-                  >
-                    <h5>{elem.tablet}</h5>
-                    <h5>{`${elem.date_range.from.date}/${elem.date_range.from.month}/${elem.date_range.from.year}`}</h5>
-                    <h5>{`${elem.date_range.to.date}/${elem.date_range.to.month}/${elem.date_range.to.year}`}</h5>
+                  <div className="text-sm flex justify-between items-center">
+                  <h3 className="font-semibold px-2 text-center font-[Poppins]">
+                      No Registered Medicine
+                    </h3>
                   </div>
-                  <Separator className="my-2" />
                 </>
-              ))}
+              ) : (
+                <>
+                  <div className="text-sm flex justify-between items-center">
+                    <h3 className="font-semibold px-2 text-center font-[Poppins]">
+                      Name
+                    </h3>
+                    <h3 className="font-semibold px-2 text-center font-[Poppins]">
+                      Start Date
+                    </h3>
+                    <h3 className="font-semibold px-2 text-center font-[Poppins]">
+                      End Date
+                    </h3>
+                  </div>
+                  {payload.map((elem) => {
+                    if (
+                      elem.date_range.from === undefined ||
+                      elem.date_range.to === undefined
+                    )
+                      return;
+
+                    const fromDate = new Date(elem.date_range.from);
+                    const toDate = new Date(elem.date_range.to);
+
+                    return (
+                      <>
+                        <div
+                          key={elem.tablet}
+                          className="text-sm flex justify-between items-center"
+                        >
+                          <h3 className="px-2 text-center font-[Poppins]">
+                            {elem.tablet}
+                          </h3>
+                          <h3 className="px-2 text-center font-[Poppins]">
+                            {fromDate.toLocaleString("default", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            })}
+                          </h3>
+                          <h3 className="px-2 text-center font-[Poppins]">
+                            {toDate.toLocaleString("default", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            })}
+                          </h3>
+                        </div>
+                        <Separator className="my-2" />
+                      </>
+                    );
+                  })}
+                </>
+              )}
             </div>
           </ScrollArea>
         </section>
