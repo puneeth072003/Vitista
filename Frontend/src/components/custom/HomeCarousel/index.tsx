@@ -33,10 +33,11 @@ function HomeCarousel() {
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index} className="pt-1 md:basis-1/2">
               <div className="p-4">
-                <Card className="h-[16.5rem] bg-[rgba(255,255,255,0.2)] flex justify-center items-center">
+                <Card className="h-[17rem] bg-[rgba(255,255,255,0.2)] flex justify-center items-center">
                   <CardContent className="flex items-center justify-center p-6">
                     <span className="text-3xl font-semibold">
-                      Lorem ipsum dolor, sit amet consectetur adipisicing.
+                      {index + 1}. Lorem ipsum dolor, sit amet consectetur
+                      adipisicing.
                     </span>
                   </CardContent>
                 </Card>
