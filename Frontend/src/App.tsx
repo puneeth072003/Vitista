@@ -18,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/record" element={<Record />} />
+        <Route path="/form" element={<Form />} />
         <Route path="/test" element={<Test />} />
       </Routes>
       <Toaster />
