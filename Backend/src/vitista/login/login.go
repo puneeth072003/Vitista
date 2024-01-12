@@ -72,7 +72,7 @@ func checkUser(client *mongo.Client, username string) (bool, error) {
 
 	collection := client.Database(databaseName).Collection(collectionName)
 
-	filter := bson.D{{"username", username}}
+	filter := bson.D{{Key: "username", Value: username}}
 
 	var existingUser userData
 	err := collection.FindOne(context.Background(), filter).Decode(&existingUser)
