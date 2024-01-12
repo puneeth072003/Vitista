@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/custom/Header";
 import Home from "@/pages/Home";
 import Form from "@/pages/Form";
+import Record from "@/pages/Record";
 import Test from "@/pages/Test";
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/form" element={<Form />} />
+        <Route path="/record" element={<Record />} />
         <Route path="/test" element={<Test />} />
       </Routes>
       <Toaster />

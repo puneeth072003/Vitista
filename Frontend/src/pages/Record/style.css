@@ -1,0 +1,11 @@
+@media (max-width: 880px) {
+  div[data-place="record"] {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  section[data-place="record"] {
+    width: 95%;
+    align-self: center;
+  }
+}
