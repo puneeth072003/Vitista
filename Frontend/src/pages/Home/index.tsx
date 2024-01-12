@@ -24,7 +24,7 @@ function Home() {
     <>
       <main
         data-place="home"
-        className="mt-[7rem] flex gap-[7vw] justify-between"
+        className="mt-[7rem] flex px-[7vw] justify-between"
       >
         <section
           data-place="home-1"
