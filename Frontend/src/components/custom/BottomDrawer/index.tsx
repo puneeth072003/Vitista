@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 
 function BottomDrawer({ children }: { children: React.ReactNode }) {
+  const today = new Date();
   return (
     <>
       <Drawer>
@@ -31,7 +32,13 @@ function BottomDrawer({ children }: { children: React.ReactNode }) {
             <div className="p-4 pb-0 w-[100vw] flex justify-around items-center">
               <section>Hello</section>
               <section>
-                <Calendar className="rounded-md border shadow" />
+                <Calendar
+                  mode={"single"}
+                  defaultMonth={today}
+                  selected={today}
+                  disableNavigation
+                  className="rounded-md border shadow"
+                />
               </section>
             </div>
             <DrawerFooter>
