@@ -35,7 +35,7 @@ function Record() {
       tablet: "Crosin",
       date_range: {
         from: new Date(2024, 0, 1).toString(),
-        to: new Date(2024, 0, 13).toString(),
+        to: new Date(2024, 0, 30).toString(),
       },
       period: "Night",
       time: new Date().toString(),
@@ -88,7 +88,7 @@ function Record() {
                 booked1: bookedStyle1,
                 booked2: bookedStyle2,
               }}
-              className="rounded-md border shadow"
+              className="rounded-md border shadow bg-[#00000005] shadow-[#00000017]"
             />
           </section>
         </section>
