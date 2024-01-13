@@ -22,7 +22,7 @@ const BACKEND_URL = import.meta.env.BACKEND_URL;
 function Form() {
   const [time, setTime] = useState<Date>();
   const [tablet, setTablet] = useState<string>();
-  const [period, setPeriod] = useState("");
+  const [period, setPeriod] = useState("Morning");
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
     to: addDays(new Date(), 0),
