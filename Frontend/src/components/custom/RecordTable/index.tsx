@@ -128,45 +128,51 @@ function RecordTable({
                     })}
                   </TableCell>
                   <TableCell className="text-right">
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
+                    {taken[idx] ? (
+                      <>
                         <Badge
                           variant={taken[idx] ? "outline" : "default"}
-                          className={
-                            taken[idx]
-                              ? "bg-[#d3d3d35f] cursor-pointer"
-                              : "bg-[#000] text-[#fff] hover:bg-[#000] hover:text-[#ff6262] cursor-pointer"
-                          }
+                          className="bg-[#d3d3d35f] cursor-pointer"
+                          onClick={() => handleBadge(idx)}
                         >
                           Taken
                         </Badge>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>
-                            Are you absolutely sure?
-                          </AlertDialogTitle>
-                          <AlertDialogDescription>
-                            {taken[idx] ? (
-                              <>Do you want to Undo the Taken Status?</>
-                            ) : (
-                              <>Are you Sure you have taken the Tablets?</>
-                            )}
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel className="bg-[transparent] flex justify-center items-center gap-[0.5rem] hover-button border border-[#00000031] hover:shadow">
-                            Cancel
-                          </AlertDialogCancel>
-                          <AlertDialogAction
-                            className="bg-[#212121] hover:bg-[#000] hover:text-[#ff1515] hover:font-bold"
-                            onClick={() => handleBadge(idx)}
-                          >
-                            Continue
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
+                      </>
+                    ) : (
+                      <>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Badge
+                              variant={taken[idx] ? "outline" : "default"}
+                              className="bg-[#000] text-[#fff] hover:bg-[#000] hover:text-[#ff6262] cursor-pointer"
+                            >
+                              Taken
+                            </Badge>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                Are you absolutely sure?
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                Are you Sure you have taken the Tablets?
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel className="bg-[transparent] flex justify-center items-center gap-[0.5rem] hover-button border border-[#00000031] hover:shadow">
+                                Cancel
+                              </AlertDialogCancel>
+                              <AlertDialogAction
+                                className="bg-[#212121] hover:bg-[#000] hover:text-[#ff1515] hover:font-bold"
+                                onClick={() => handleBadge(idx)}
+                              >
+                                Continue
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </>
+                    )}
                   </TableCell>
                 </TableRow>
               );
