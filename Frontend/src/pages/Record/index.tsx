@@ -63,15 +63,15 @@ function Record() {
         className="flex flex-col justify-center items-center gap-[5rem] py-[3rem] px-6 lg:px-8 w-full h-full"
       >
         <section className="flex justify-center items-center gap-[5rem] px-6 lg:px-8 w-full h-full flex-wrap">
-          <div className="flex flex-col justify-center items-start">
-            <h1 className="font-[Poppins] text-[3rem]">
+          <div className="flex flex-col justify-center items-center">
+            <h1 className="font-[Poppins] text-[3rem] text-center">
               {selectedDate.toLocaleString("default", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
               })}
             </h1>
-            <h1 className="font-[Rubik] text-[3rem]">
+            <h1 className="font-[Rubik] text-[3rem] text-center">
               {selectedDate.toLocaleDateString("default", { weekday: "long" })}
             </h1>
           </div>

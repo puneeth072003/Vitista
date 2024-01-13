@@ -6,6 +6,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 
 import { IPayload } from "@/interface";
@@ -80,8 +91,8 @@ function RecordTable({
                   <TableCell
                     className={
                       taken[idx]
-                        ? "text-[grey] font-[Poppins]"
-                        : "font-[Poppins]"
+                        ? "text-[grey] font-[Poppins] text-center"
+                        : "font-[Poppins] text-center"
                     }
                   >
                     {fromDate.toLocaleString("default", {
@@ -93,8 +104,8 @@ function RecordTable({
                   <TableCell
                     className={
                       taken[idx]
-                        ? "text-[grey] font-[Poppins]"
-                        : "font-[Poppins]"
+                        ? "text-[grey] font-[Poppins] text-center"
+                        : "font-[Poppins] text-center"
                     }
                   >
                     {toDate.toLocaleString("default", {
@@ -106,8 +117,8 @@ function RecordTable({
                   <TableCell
                     className={
                       taken[idx]
-                        ? "text-[grey] font-[Poppins]"
-                        : "font-[Poppins]"
+                        ? "text-[grey] font-[Poppins] text-center"
+                        : "font-[Poppins] text-center"
                     }
                   >
                     {time.toLocaleString("en-US", {
@@ -117,17 +128,45 @@ function RecordTable({
                     })}
                   </TableCell>
                   <TableCell className="text-right">
-                    <Badge
-                      variant={taken[idx] ? "outline" : "default"}
-                      onClick={() => handleBadge(idx)}
-                      className={
-                        taken[idx]
-                          ? "bg-[#d3d3d35f] cursor-pointer"
-                          : "bg-[#000] text-[#fff] hover:bg-[#000] hover:text-[#ff6262] cursor-pointer"
-                      }
-                    >
-                      Taken
-                    </Badge>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Badge
+                          variant={taken[idx] ? "outline" : "default"}
+                          className={
+                            taken[idx]
+                              ? "bg-[#d3d3d35f] cursor-pointer"
+                              : "bg-[#000] text-[#fff] hover:bg-[#000] hover:text-[#ff6262] cursor-pointer"
+                          }
+                        >
+                          Taken
+                        </Badge>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Are you absolutely sure?
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            {taken[idx] ? (
+                              <>Do you want to Undo the Taken Status?</>
+                            ) : (
+                              <>Are you Sure you have taken the Tablets?</>
+                            )}
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel className="bg-[transparent] flex justify-center items-center gap-[0.5rem] hover-button border border-[#00000031] hover:shadow">
+                            Cancel
+                          </AlertDialogCancel>
+                          <AlertDialogAction
+                            className="bg-[#212121] hover:bg-[#000] hover:text-[#ff1515] hover:font-bold"
+                            onClick={() => handleBadge(idx)}
+                          >
+                            Continue
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </TableCell>
                 </TableRow>
               );
