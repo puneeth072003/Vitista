@@ -46,7 +46,7 @@ function Form() {
   useEffect(() => {
     async () => {
       await axios
-        .get<IPayload[]>(`${BACKEND_URL}/api/v1/randomShit2`)
+        .get<IPayload[]>(`${BACKEND_URL}/v1/randomShit2`)
         .then((res) => dispatch(dataFetch(res.data)));
     };
 
@@ -73,7 +73,7 @@ function Form() {
               {payload.length === 0 ? (
                 <>
                   <div className="text-sm flex justify-between items-center">
-                  <h3 className="font-semibold px-2 text-center font-[Poppins]">
+                    <h3 className="font-semibold px-2 text-center font-[Poppins]">
                       No Registered Medicine
                     </h3>
                   </div>
