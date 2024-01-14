@@ -19,8 +19,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
+import profile from "@/assets/default_profile_pic.png";
+
 function HeaderConnect() {
-  const username = useSelector((state: RootState) => state.username);
+  const username = useSelector((state: RootState) => state.userCookie.username);
 
   return (
     <>
@@ -40,20 +42,20 @@ function HeaderConnect() {
             <>
               <HoverCard>
                 <HoverCardTrigger asChild>
-                  <Button variant="link" className="text-[#000]">
+                  <Button variant="link" className="text-[#000] font-medium">
                     @nextjs
                   </Button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-60 shadow shadow-[#00000017] bg-[#00000005]">
                   <div className="flex justify-center items-center space-x-4">
                     <Avatar>
-                      <AvatarImage src="https://github.com/vercel.png" />
+                      <AvatarImage src={profile} />
                       <AvatarFallback>VC</AvatarFallback>
                     </Avatar>
                     <div className="space-y-1">
                       <h4 className="text-sm font-semibold">@nextjs</h4>
                       <div className="flex items-center pt-2">
-                        <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
+                        <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
                         <span className="text-xs text-muted-foreground">
                           Joined December 2021
                         </span>

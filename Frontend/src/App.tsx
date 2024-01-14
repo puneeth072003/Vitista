@@ -8,7 +8,6 @@ import Header from "@/components/custom/Header";
 import Home from "@/pages/Home";
 import Form from "@/pages/Form";
 import Record from "@/pages/Record";
-import Test from "@/pages/Test";
 import Connect from "@/pages/Connect";
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/record" element={<Record />} />
         <Route path="/form" element={<Form />} />
-        <Route path="/test" element={<Test />} />
         <Route path="/connect" element={<Connect />} />
       </Routes>
       <Toaster />

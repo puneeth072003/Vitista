@@ -35,3 +35,10 @@ type IConnectError = {
 };
 
 export type IConnect = IConnectSuccess | IConnectError;
+
+export type ICookie = {
+  username: string;
+  fullName: string;
+  googleAuthToken: string,
+  dateOfJoin: string
+}

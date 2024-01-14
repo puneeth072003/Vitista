@@ -57,11 +57,10 @@ function Home() {
         </section>
         <section
           data-place="home-2"
-          className="flex justify-center items-center w-[35vw] min-w-[35vw]"
+          className="flex flex-col justify-center items-center w-[35vw] min-w-[35vw]"
         >
-          <div>
-            <HomeCarousel />
-          </div>
+          <h1 className="font-[Ubuntu] text-[2rem]">Refer some Blogs</h1>
+          <HomeCarousel />
         </section>
       </main>
     </>
