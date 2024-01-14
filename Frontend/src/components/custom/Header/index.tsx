@@ -11,6 +11,12 @@ import {
 
 import { NavLink, useLocation } from "react-router-dom";
 
+import { useEffect } from "react";
+
+import { useDispatch } from "react-redux";
+
+import { getFromLocalStorage } from "@/redux/slices/userStorage";
+
 import HeaderConnect from "../HeaderConnect";
 import HeaderHamburger from "../HeaderHamburger";
 
@@ -19,6 +25,11 @@ import "./style.css";
 
 function Header() {
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFromLocalStorage());
+  }, [dispatch]);
 
   return (
     <>

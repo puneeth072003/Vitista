@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import formPayloadSlice from "./slices/formPayload";
-import userCookieSlice from "./slices/userCookie";
+import userStorageSlice from "./slices/userStorage";
 
 export const store = configureStore({
   reducer: {
     formPayload: formPayloadSlice,
-    userCookie: userCookieSlice,
+    userStorage: userStorageSlice,
   },
 });
 

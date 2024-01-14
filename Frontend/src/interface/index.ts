@@ -23,7 +23,7 @@ export type IProps = {
 
 export type IBackendData = {
   schedules: IPayload[];
-}
+};
 
 type IConnectSuccess = {
   message: string;
@@ -36,9 +36,15 @@ type IConnectError = {
 
 export type IConnect = IConnectSuccess | IConnectError;
 
-export type ICookie = {
+export type IUserStorage = {
   username: string;
-  fullName: string;
-  googleAuthToken: string,
-  dateOfJoin: string
-}
+  firstName: string;
+  googleAuthToken: string;
+  dateOfJoin: string;
+};
+
+export type IConnectRegister = {
+  username: string;
+  firstName: string;
+  dateOfJoin: string;
+};

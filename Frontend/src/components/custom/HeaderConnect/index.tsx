@@ -22,13 +22,14 @@ import { RootState } from "@/redux/store";
 import profile from "@/assets/default_profile_pic.png";
 
 function HeaderConnect() {
-  const username = useSelector((state: RootState) => state.userCookie.username);
+  const userInfo = useSelector((state: RootState) => state.userStorage);
+  const joinedDate = new Date(userInfo.dateOfJoin);
 
   return (
     <>
       <NavigationMenuItem>
         <NavigationMenuLink className="font-medium">
-          {username === "" ? (
+          {userInfo.username === "" ? (
             <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]">
               <Link
                 className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
@@ -43,21 +44,27 @@ function HeaderConnect() {
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <Button variant="link" className="text-[#000] font-medium">
-                    @nextjs
+                    @{userInfo.username}
                   </Button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-60 shadow shadow-[#00000017] bg-[#00000005]">
                   <div className="flex justify-center items-center space-x-4">
                     <Avatar>
                       <AvatarImage src={profile} />
-                      <AvatarFallback>VC</AvatarFallback>
+                      <AvatarFallback>{userInfo.username}</AvatarFallback>
                     </Avatar>
                     <div className="space-y-1">
-                      <h4 className="text-sm font-semibold">@nextjs</h4>
+                      <h4 className="text-sm font-semibold">
+                        {userInfo.firstName}
+                      </h4>
                       <div className="flex items-center pt-2">
                         <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
                         <span className="text-xs text-muted-foreground">
-                          Joined December 2021
+                          Joined{" "}
+                          {joinedDate.toLocaleString("default", {
+                            month: "short",
+                            year: "numeric",
+                          })}
                         </span>
                       </div>
                     </div>
