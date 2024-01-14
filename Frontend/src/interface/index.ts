@@ -10,7 +10,7 @@ export interface IPayload {
   Time: string | undefined;
 }
 
-export interface IProps {
+export type IProps = {
   time: Date | undefined;
   setTime: React.Dispatch<React.SetStateAction<Date | undefined>>;
   tablet: string | undefined;
@@ -19,8 +19,19 @@ export interface IProps {
   setPeriod: React.Dispatch<React.SetStateAction<string>>;
   date: DateRange | undefined;
   setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
-}
+};
 
-export interface IBackendData {
+export type IBackendData = {
   schedules: IPayload[];
 }
+
+type IConnectSuccess = {
+  message: string;
+  username: string;
+};
+
+type IConnectError = {
+  error: string;
+};
+
+export type IConnect = IConnectSuccess | IConnectError;

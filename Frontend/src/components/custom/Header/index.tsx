@@ -8,14 +8,20 @@ import {
   // NavigationMenuTrigger,
   //   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import icon from "@/assets/icon.png";
 
 import "./style.css";
 
 function Header() {
+  const location = useLocation();
+
   return (
     <>
       <header className="flex justify-between items-center pt-[1rem] px-[7vw] pb-[1rem]">
@@ -30,7 +36,7 @@ function Header() {
             </h1>
           </a>
         </div>
-        <div  className="max-[630px]:w-full max-[630px]:flex max-[630px]:justify-evenly">
+        <div className="max-[630px]:w-full max-[630px]:flex max-[630px]:justify-evenly">
           <NavigationMenu>
             <NavigationMenuList className="gap-[3rem]">
               <NavigationMenuItem>
@@ -42,18 +48,33 @@ function Header() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink className="font-medium">
-                  <NavLink to={"/algorithms"} className="underline-effect text-center">
+                  <NavLink
+                    to={"/algorithms"}
+                    className="underline-effect text-center"
+                  >
                     Risk Assessments
                   </NavLink>
                 </NavigationMenuLink>
               </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink className="font-medium">
-                  <NavLink to={"/about"} className="underline-effect">
-                    About
-                  </NavLink>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+              {location.pathname !== "/connect" ? (
+                <>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink className="font-medium">
+                      <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]">
+                        <Link
+                          className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
+                          to={"/connect"}
+                        >
+                          Connect
+                          <FontAwesomeIcon icon={faUser} />
+                        </Link>
+                      </Button>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                </>
+              ) : (
+                <></>
+              )}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
