@@ -19,7 +19,7 @@ import FormTimePicker from "@/components/custom/FormTimePicker";
 import "./style.css";
 import { addedData } from "@/redux/slices/formPayload";
 
-const BACKEND_URL = import.meta.env.BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 function customToast(payload: IPayload) {
   if (
