@@ -18,6 +18,7 @@ func main() {
 		routeGroup.POST("/login",login.Login)
 		routeGroup.GET("/signin",login.SignIn)
 		routeGroup.GET("/readcookie",login.ReadCookie)
+		routeGroup.GET("/getall",home.GetAll)
 	}
 	r.Run("localhost:8080")
 }
