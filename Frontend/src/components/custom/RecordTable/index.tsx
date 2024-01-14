@@ -60,15 +60,15 @@ function RecordTable({
         <TableBody>
           {backendData.map((data, idx) => {
             if (
-              data.date_range.from === undefined ||
-              data.date_range.to === undefined ||
-              data.time === undefined
+              data.DateRange.From === undefined ||
+              data.DateRange.To === undefined ||
+              data.Time === undefined
             )
               return;
-            if (data.period === period) {
-              const fromDate = new Date(data.date_range.from);
-              const toDate = new Date(data.date_range.to);
-              const time = new Date(data.time);
+            if (data.Period === period) {
+              const fromDate = new Date(data.DateRange.From);
+              const toDate = new Date(data.DateRange.To);
+              const time = new Date(data.Time);
 
               if (
                 !(
@@ -86,7 +86,7 @@ function RecordTable({
                         : "font-medium font-[Poppins]"
                     }
                   >
-                    {data.tablet}
+                    {data.Tablet}
                   </TableCell>
                   <TableCell
                     className={

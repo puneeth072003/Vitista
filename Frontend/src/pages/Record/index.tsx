@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Calendar } from "@/components/ui/calendar";
-import { IPayload } from "@/interface";
+import { IPayload, IBackendData } from "@/interface";
 
 import RecordTable from "@/components/custom/RecordTable";
 
@@ -12,35 +12,7 @@ const BACKEND_URL = import.meta.env.BACKEND_URL;
 function Record() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
-  const [backendData, setBackendData] = useState<IPayload[]>([
-    {
-      tablet: "Crosin",
-      date_range: {
-        from: new Date(2024, 0, 11).toString(),
-        to: new Date(2024, 0, 21).toString(),
-      },
-      period: "Morning",
-      time: new Date().toString(),
-    },
-    {
-      tablet: "Crosin",
-      date_range: {
-        from: new Date(2024, 0, 20).toString(),
-        to: new Date(2024, 0, 30).toString(),
-      },
-      period: "Noon",
-      time: new Date().toString(),
-    },
-    {
-      tablet: "Crosin",
-      date_range: {
-        from: new Date(2024, 0, 1).toString(),
-        to: new Date(2024, 0, 30).toString(),
-      },
-      period: "Night",
-      time: new Date().toString(),
-    },
-  ]);
+  const [backendData, setBackendData] = useState<IPayload[]>([]);
 
   const bookedDays1 = [new Date(2024, 0, 8), new Date(2024, 0, 9)];
   const bookedStyle1 = { border: "2px solid black" };
@@ -51,8 +23,8 @@ function Record() {
   useEffect(() => {
     async () => {
       axios
-        .get<IPayload[]>(`${BACKEND_URL}/api/v1/randomBullshit3`)
-        .then((res) => setBackendData(res.data));
+        .get<IBackendData>(`${BACKEND_URL}/api/v1/getall`)
+        .then((res) => setBackendData(res.data.schedules));
     };
   });
 
@@ -100,16 +72,16 @@ function Record() {
                   {period}
                 </h2>
                 {backendData.filter((data) => {
-                  if (data.period !== period) return false;
+                  if (data.Period !== period) return false;
                   if (
-                    data.date_range.from === undefined ||
-                    data.date_range.to === undefined ||
-                    data.time === undefined
+                    data.DateRange.From === undefined ||
+                    data.DateRange.To === undefined ||
+                    data.Time === undefined
                   )
                     return false;
-                  if (data.period === period) {
-                    const fromDate = new Date(data.date_range.from);
-                    const toDate = new Date(data.date_range.to);
+                  if (data.Period === period) {
+                    const fromDate = new Date(data.DateRange.From);
+                    const toDate = new Date(data.DateRange.To);
                     if (
                       !(
                         fromDate.getTime() <= selectedDate.getTime() &&

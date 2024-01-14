@@ -23,13 +23,13 @@ const BACKEND_URL = import.meta.env.BACKEND_URL;
 
 function customToast(payload: IPayload) {
   if (
-    payload.date_range.from === undefined ||
-    payload.date_range.to === undefined
+    payload.DateRange.From === undefined ||
+    payload.DateRange.To === undefined
   )
     return;
 
-  const startDate = new Date(payload.date_range.from);
-  const endDate = new Date(payload.date_range.to);
+  const startDate = new Date(payload.DateRange.From);
+  const endDate = new Date(payload.DateRange.To);
 
   toast("Your Tablet Course has been Registered", {
     description: `Tablet Course from ${startDate.toLocaleString("default", {
@@ -50,14 +50,14 @@ function TabletForm({ tabletFormProps }: { tabletFormProps: IProps }) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const payload = {
-      tablet: tabletFormProps.tablet,
-      date_range: {
-        from: tabletFormProps.date?.from?.toString(),
-        to: tabletFormProps.date?.to?.toString(),
+    const payload: IPayload = {
+      Tablet: tabletFormProps.tablet,
+      DateRange: {
+        From: tabletFormProps.date?.from?.toString(),
+        To: tabletFormProps.date?.to?.toString(),
       },
-      period: tabletFormProps.period,
-      time: tabletFormProps.time?.toString(),
+      Period: tabletFormProps.period,
+      Time: tabletFormProps.time?.toString(),
     };
 
     await axios
