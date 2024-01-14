@@ -45,8 +45,8 @@ function HomeCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext ref={carouselButton} />
+        <CarouselPrevious className="hidden" />
+        <CarouselNext ref={carouselButton} className="hidden" />
       </Carousel>
     </>
   );
