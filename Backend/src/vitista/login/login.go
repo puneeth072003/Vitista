@@ -46,7 +46,9 @@ func Login(c *gin.Context) {
         fmt.Println("Error inserting data into MongoDB:", err)
         return
     }else{
-		c.JSON(200, gin.H{"message": "User logged in successfully!"})
+		c.SetCookie("username", payload.Username, 8080, "/", "localhost", false, true)
+		fmt.Println("Cookie set successfully!!!")
+		c.JSON(200, gin.H{"message": "User logged in successfully!","username":payload.Username})
 	}
 }
 
