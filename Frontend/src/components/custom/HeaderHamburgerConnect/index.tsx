@@ -18,7 +18,7 @@ import { RootState } from "@/redux/store";
 import profile from "@/assets/default_profile_pic.png";
 
 function HeaderHamburgerConnect() {
-  const username = useSelector((state: RootState) => state.username);
+  const username = useSelector((state: RootState) => state.userCookie.username);
   return (
     <>
       {username === "" ? (
