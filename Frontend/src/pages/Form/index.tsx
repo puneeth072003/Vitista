@@ -17,7 +17,7 @@ import { IBackendData } from "@/interface";
 import TabletForm from "@/components/custom/TabletForm";
 import "./style.css";
 
-const BACKEND_URL = import.meta.env.BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 function Form() {
   const [time, setTime] = useState<Date>();

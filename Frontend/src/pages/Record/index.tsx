@@ -7,7 +7,7 @@ import { IPayload, IBackendData } from "@/interface";
 
 import RecordTable from "@/components/custom/RecordTable";
 
-const BACKEND_URL = import.meta.env.BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 function Record() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
