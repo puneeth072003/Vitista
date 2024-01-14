@@ -13,8 +13,9 @@ type DateRange struct {
   To string
 }
 type Payload struct {
+   Username string
   Tablet string
-  DateRange DateRange
+  Date_range DateRange
   Period string
   Time string
 }

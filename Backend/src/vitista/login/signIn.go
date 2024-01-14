@@ -31,7 +31,7 @@ func SignIn(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, gin.H{"message": "User signed in successfully!"})
+	c.JSON(200, gin.H{"message": "User signed in successfully!","username":username})
 }
 
 func checkCredentials(client *mongo.Client, username, password string) error {
@@ -59,4 +59,16 @@ func checkCredentials(client *mongo.Client, username, password string) error {
 	}
 
 	return nil
+}
+
+// Read user cookie
+func ReadCookie(c *gin.Context) {
+		// Read a cookie
+		username, err := c.Cookie("username")
+		if err != nil {
+			fmt.Println("Error reading cookie:", err)
+			return
+		}
+	fmt.Printf("Username from cookie: %s", username)
+	c.JSON(200, gin.H{"message": "Cookie read successfully!","username":username})
 }
