@@ -8,8 +8,13 @@ import {
   // NavigationMenuTrigger,
   //   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
 
+import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import icon from "@/assets/icon.png";
 
@@ -30,7 +35,7 @@ function Header() {
             </h1>
           </a>
         </div>
-        <div  className="max-[630px]:w-full max-[630px]:flex max-[630px]:justify-evenly">
+        <div className="max-[630px]:w-full max-[630px]:flex max-[630px]:justify-evenly">
           <NavigationMenu>
             <NavigationMenuList className="gap-[3rem]">
               <NavigationMenuItem>
@@ -42,16 +47,25 @@ function Header() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink className="font-medium">
-                  <NavLink to={"/algorithms"} className="underline-effect text-center">
+                  <NavLink
+                    to={"/algorithms"}
+                    className="underline-effect text-center"
+                  >
                     Risk Assessments
                   </NavLink>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink className="font-medium">
-                  <NavLink to={"/about"} className="underline-effect">
-                    About
-                  </NavLink>
+                  <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]">
+                    <Link
+                      className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
+                      to={"/connect"}
+                    >
+                      Login
+                      <FontAwesomeIcon icon={faUser} />
+                    </Link>
+                  </Button>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
