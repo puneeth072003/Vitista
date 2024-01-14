@@ -22,7 +22,7 @@ const BACKEND_URL = import.meta.env.BACKEND_URL;
 function Form() {
   const [time, setTime] = useState<Date>();
   const [tablet, setTablet] = useState<string>();
-  const [period, setPeriod] = useState("");
+  const [period, setPeriod] = useState("Morning");
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
     to: addDays(new Date(), 0),
@@ -46,7 +46,7 @@ function Form() {
   useEffect(() => {
     async () => {
       await axios
-        .get<IPayload[]>(`${BACKEND_URL}/api/v1/randomShit2`)
+        .get<IPayload[]>(`${BACKEND_URL}/v1/randomShit2`)
         .then((res) => dispatch(dataFetch(res.data)));
     };
 
@@ -73,7 +73,7 @@ function Form() {
               {payload.length === 0 ? (
                 <>
                   <div className="text-sm flex justify-between items-center">
-                  <h3 className="font-semibold px-2 text-center font-[Poppins]">
+                    <h3 className="font-semibold px-2 text-center font-[Poppins]">
                       No Registered Medicine
                     </h3>
                   </div>

@@ -61,7 +61,7 @@ function TabletForm({ tabletFormProps }: { tabletFormProps: IProps }) {
     };
 
     await axios
-      .post(`${BACKEND_URL}/api/v1/randomShit`, payload)
+      .post(`${BACKEND_URL}/v1/savePayload`, payload)
       .then(() => dispatch(addedData(payload)))
       .then(() => customToast(payload));
   };

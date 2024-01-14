@@ -4,22 +4,12 @@ import { faRightLong } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
-import BottomDrawer from "@/components/custom/BottomDrawer";
+
 import HomeCarousel from "@/components/custom/HomeCarousel";
 
 import "./style.css";
 
 function Home() {
-  const DrawerButton = (
-    <Button
-      className="bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold border border-[#00000031] hover:shadow"
-      variant="secondary"
-    >
-      Check Today's Medicine Course{" "}
-      <FontAwesomeIcon className="hover-icon" icon={faRightLong} />
-    </Button>
-  );
-
   return (
     <>
       <main
@@ -51,7 +41,18 @@ function Home() {
                 <FontAwesomeIcon className="hover-icon" icon={faRightLong} />
               </Link>
             </Button>
-            <BottomDrawer children={DrawerButton} />
+            <Button
+              className="bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold border border-[#00000031] hover:shadow"
+              variant="secondary"
+            >
+              <Link
+                className="flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button"
+                to={"/record"}
+              >
+                Check your Medicine Course
+                <FontAwesomeIcon className="hover-icon" icon={faRightLong} />
+              </Link>
+            </Button>
           </div>
         </section>
         <section
