@@ -23,7 +23,7 @@ function Home() {
           <h3 className="text-[1.8rem] font-[Rubik] tracking-[-0.07rem] font-[1000]">
             By the Team <span className="text-[#44D9E6] italic">Dev-Den</span>
           </h3>
-          <h1 className="text-[4.5rem] font-[800] font-[Ubuntu] leading-[1.2]">
+          <h1 className="text-[4.5rem] font-[800] font-[Ubuntu] leading-[1.2] w-full">
             A Healthy <span className="text-[#44D9E6]">Future</span> begins Now.
           </h1>
           <p className="text-[1.3rem] font-[Poppins]">
