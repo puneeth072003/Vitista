@@ -18,11 +18,19 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
-import { IConnect } from "@/interface";
+import { IConnect, IConnectRegister } from "@/interface";
 
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+
+import {
+  setUsernameFromConnect,
+  setUserStorageFromConnect,
+  setToLocalStorage,
+} from "@/redux/slices/userStorage";
 
 import logo from "@/assets/icon.png";
 
@@ -39,6 +47,7 @@ function Connect() {
   );
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     const res = await axios.get<IConnect>(`${BACKEND_URL}/v1/signin`, {
@@ -52,6 +61,8 @@ function Connect() {
         setError(false);
       }, 5000);
     } else {
+      dispatch(setUsernameFromConnect(res.data.username));
+      dispatch(setToLocalStorage());
       setSuccess(true);
       setMessages("Login Successfull!");
       setTimeout(() => {
@@ -74,6 +85,16 @@ function Connect() {
         setError(false);
       }, 5000);
     } else {
+      const dateOfJoin = new Date().toString();
+
+      const data: IConnectRegister = {
+        username: res.data.username,
+        firstName,
+        dateOfJoin,
+      };
+
+      dispatch(setUserStorageFromConnect(data));
+      dispatch(setToLocalStorage());
       setSuccess(true);
       setMessages("Sign Up Successfull!");
       setTimeout(() => {
