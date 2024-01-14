@@ -15,6 +15,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
+import profile from "@/assets/default_profile_pic.png";
+
 function HeaderHamburgerConnect() {
   const username = useSelector((state: RootState) => state.username);
   return (
@@ -33,14 +35,14 @@ function HeaderHamburgerConnect() {
         <>
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Button variant="link" className="text-[#000]">
+              <Button variant="link" className="text-[#000] font-medium">
                 @nextjs
               </Button>
             </HoverCardTrigger>
             <HoverCardContent className="w-60 shadow shadow-[#00000017] bg-[#00000005]">
               <div className="flex justify-center items-center space-x-4">
                 <Avatar>
-                  <AvatarImage src="https://github.com/vercel.png" />
+                  <AvatarImage src={profile} />
                   <AvatarFallback>VC</AvatarFallback>
                 </Avatar>
                 <div className="space-y-1">
