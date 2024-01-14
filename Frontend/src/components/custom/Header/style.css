@@ -11,4 +11,15 @@
 .underline-effect:hover {
   text-decoration-color: rgba(0, 0, 0, 1);
 }
+div[data-visible="hamburger"] {
+  display: none;
+}
 
+@media (max-width: 600px) {
+  div[data-visible="large"] {
+    display: none;
+  }
+  div[data-visible="hamburger"] {
+    display: block;
+  }
+}

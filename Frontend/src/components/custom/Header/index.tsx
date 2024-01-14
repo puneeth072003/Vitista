@@ -12,6 +12,7 @@ import {
 import { NavLink, useLocation } from "react-router-dom";
 
 import HeaderConnect from "../HeaderConnect";
+import HeaderHamburger from "../HeaderHamburger";
 
 import icon from "@/assets/icon.png";
 import "./style.css";
@@ -22,7 +23,7 @@ function Header() {
   return (
     <>
       <header className="flex justify-between items-center pt-[1rem] px-[7vw] pb-[1rem]">
-        <div className="max-[630px]:hidden">
+        <div>
           <a
             className="flex justify-center items-center gap-[0.5rem]"
             href="https://github.com/puneeth072003/GfG-hackthon-project"
@@ -33,7 +34,7 @@ function Header() {
             </h1>
           </a>
         </div>
-        <div className="max-[630px]:w-full max-[630px]:flex max-[630px]:justify-evenly">
+        <div data-visible="large">
           <NavigationMenu>
             <NavigationMenuList className="gap-[3rem]">
               <NavigationMenuItem>
@@ -60,6 +61,9 @@ function Header() {
               )}
             </NavigationMenuList>
           </NavigationMenu>
+        </div>
+        <div data-visible="hamburger">
+          <HeaderHamburger />
         </div>
       </header>
     </>
