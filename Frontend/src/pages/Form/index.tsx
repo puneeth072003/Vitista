@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { dataFetch, reset } from "@/redux/slices/formPayload";
 
-import { IPayload } from "@/interface";
+import { IBackendData } from "@/interface";
 
 import TabletForm from "@/components/custom/TabletForm";
 import "./style.css";
@@ -46,8 +46,9 @@ function Form() {
   useEffect(() => {
     async () => {
       await axios
-        .get<IPayload[]>(`${BACKEND_URL}/v1/randomShit2`)
-        .then((res) => dispatch(dataFetch(res.data)));
+        .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
+        .then((res) => dispatch(dataFetch(res.data.schedules)))
+        .then((res) => console.log(res.payload));
     };
 
     return () => {
@@ -58,7 +59,7 @@ function Form() {
   }, [dispatch]);
   return (
     <>
-      <div
+      <main
         data-place="form"
         className="flex justify-center items-center gap-[5rem] py-[1.5rem] px-6 lg:px-8"
       >
@@ -93,22 +94,22 @@ function Form() {
                   </div>
                   {payload.map((elem) => {
                     if (
-                      elem.date_range.from === undefined ||
-                      elem.date_range.to === undefined
+                      elem.DateRange.From === undefined ||
+                      elem.DateRange.To === undefined
                     )
                       return;
 
-                    const fromDate = new Date(elem.date_range.from);
-                    const toDate = new Date(elem.date_range.to);
+                    const fromDate = new Date(elem.DateRange.From);
+                    const toDate = new Date(elem.DateRange.To);
 
                     return (
                       <>
                         <div
-                          key={elem.tablet}
+                          key={elem.Tablet}
                           className="text-sm flex justify-between items-center"
                         >
                           <h3 className="px-2 text-center font-[Poppins]">
-                            {elem.tablet}
+                            {elem.Tablet}
                           </h3>
                           <h3 className="px-2 text-center font-[Poppins]">
                             {fromDate.toLocaleString("default", {
@@ -134,7 +135,7 @@ function Form() {
             </div>
           </ScrollArea>
         </section>
-      </div>
+      </main>
     </>
   );
 }

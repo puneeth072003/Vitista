@@ -1,14 +1,14 @@
 import { DateRange } from "react-day-picker";
 
-export type IPayload = {
-  tablet: string | undefined;
-  date_range: {
-    from: string | undefined;
-    to: string | undefined;
+export interface IPayload {
+  Tablet: string | undefined;
+  DateRange: {
+    From: string | undefined;
+    To: string | undefined;
   };
-  period: string;
-  time: string | undefined;
-};
+  Period: string;
+  Time: string | undefined;
+}
 
 export type IProps = {
   time: Date | undefined;
@@ -20,6 +20,10 @@ export type IProps = {
   date: DateRange | undefined;
   setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
 };
+
+export type IBackendData = {
+  schedules: IPayload[];
+}
 
 type IConnectSuccess = {
   message: string;
