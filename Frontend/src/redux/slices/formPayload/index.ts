@@ -7,7 +7,7 @@ export const formPayloadSlice = createSlice({
   initialState,
   name: "Form Payload",
   reducers: {
-    dataFetch: (_state, action) => {
+    dataFetch: (_state, action: PayloadAction<IPayload[]>) => {
       return action.payload;
     },
     addedData: (state, action: PayloadAction<IPayload>) => {
