@@ -8,15 +8,13 @@ import {
   // NavigationMenuTrigger,
   //   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
-import { Button } from "@/components/ui/button";
 
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import HeaderConnect from "../HeaderConnect";
+import HeaderHamburger from "../HeaderHamburger";
 
 import icon from "@/assets/icon.png";
-
 import "./style.css";
 
 function Header() {
@@ -25,7 +23,7 @@ function Header() {
   return (
     <>
       <header className="flex justify-between items-center pt-[1rem] px-[7vw] pb-[1rem]">
-        <div className="max-[630px]:hidden">
+        <div>
           <a
             className="flex justify-center items-center gap-[0.5rem]"
             href="https://github.com/puneeth072003/GfG-hackthon-project"
@@ -36,7 +34,7 @@ function Header() {
             </h1>
           </a>
         </div>
-        <div className="max-[630px]:w-full max-[630px]:flex max-[630px]:justify-evenly">
+        <div data-visible="large">
           <NavigationMenu>
             <NavigationMenuList className="gap-[3rem]">
               <NavigationMenuItem>
@@ -56,27 +54,16 @@ function Header() {
                   </NavLink>
                 </NavigationMenuLink>
               </NavigationMenuItem>
-              {location.pathname !== "/connect" ? (
+              {location.pathname !== "/connect" && (
                 <>
-                  <NavigationMenuItem>
-                    <NavigationMenuLink className="font-medium">
-                      <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]">
-                        <Link
-                          className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
-                          to={"/connect"}
-                        >
-                          Connect
-                          <FontAwesomeIcon icon={faUser} />
-                        </Link>
-                      </Button>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
+                  <HeaderConnect />
                 </>
-              ) : (
-                <></>
               )}
             </NavigationMenuList>
           </NavigationMenu>
+        </div>
+        <div data-visible="hamburger">
+          <HeaderHamburger />
         </div>
       </header>
     </>

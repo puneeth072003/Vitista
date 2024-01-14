@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import formPayloadSlice from "./slices/formPayload";
+import usernameSlice from "./slices/username";
+
 export const store = configureStore({
   reducer: {
     formPayload: formPayloadSlice,
+    username: usernameSlice,
   },
 });
 
