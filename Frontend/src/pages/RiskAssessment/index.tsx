@@ -16,6 +16,8 @@ function RiskAssessment() {
 
   const dispatch = useDispatch();
 
+  // const [result, setResult] = useState("");
+
   const handleUpload = async () => {
     if (!image) {
       console.error("Please select an image.");
@@ -28,9 +30,12 @@ function RiskAssessment() {
     formData.append("image", image);
 
     await axios
-      .post(`${BACKEND_URL}/v1/upload`, formData, {})
-      .then((res) => console.log(res.data))
-      .catch((err) => console.error("Error uploading image:", err))
+      .post(`${BACKEND_URL}/v1/upload`, formData)
+      .then(async () => {
+        await axios
+          .get(`${BACKEND_URL}/v1/modelProcessing1`)
+          .then((res) => console.log(res.data));
+      })
       .finally(() => dispatch(switchState(false)));
   };
 
@@ -58,7 +63,7 @@ function RiskAssessment() {
           <Input
             id="picture"
             type="file"
-            accept=".jpg"
+            accept="image/*"
             onChange={handleImageChange}
           />
           <Button
