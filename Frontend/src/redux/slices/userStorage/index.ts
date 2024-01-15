@@ -14,14 +14,14 @@ export const userStorageSlice = createSlice({
   reducers: {
     setToLocalStorage: (state) => {
       localStorage.setItem("User_username", state.username);
-      localStorage.setItem("User_fullName", state.firstName);
+      localStorage.setItem("User_firstName", state.firstName);
       localStorage.setItem("User_dateOfJoin", state.dateOfJoin);
       localStorage.setItem("User_googleAuthToken", state.googleAuthToken);
       return state;
     },
     getFromLocalStorage: () => {
       const username = localStorage.getItem("User_username") || "";
-      const firstName = localStorage.getItem("User_fullName") || "";
+      const firstName = localStorage.getItem("User_firstName") || "";
       const dateOfJoin = localStorage.getItem("User_dateOfJoin") || "";
       const googleAuthToken =
         localStorage.getItem("User_googleAuthToken") || "";
