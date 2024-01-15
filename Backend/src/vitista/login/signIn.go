@@ -29,6 +29,9 @@ func SignIn(c *gin.Context) {
 		fmt.Println("Error validating credentials:", err)
 		c.JSON(401, gin.H{"error": "Invalid credentials"})
 		return
+	}else{
+		c.SetCookie("username", username, 8080, "/", "localhost", false, true)
+		fmt.Println("Cookie set successfully!!!")
 	}
 
 	c.JSON(200, gin.H{"message": "User signed in successfully!","username":username})
