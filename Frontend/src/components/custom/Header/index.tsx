@@ -48,7 +48,7 @@ function Header() {
     },
     {
       title: "Activity Monitor",
-      href: "/fit",
+      href: "/track/fit",
       description:
         "Track your Sleep Cycle with out Integrated Activity Monitor",
     },

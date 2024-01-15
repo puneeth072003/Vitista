@@ -13,32 +13,48 @@ function Bmi() {
 
   const [progress, setProgress] = useState(0);
 
-  const [style, setStyle] = useState("");
+  const [style, setStyle] = useState({
+    backgroundColor: "",
+    color: "",
+  });
 
   useEffect(() => {
-    console.log(res);
     let bmi = res.bmi;
     if (bmi > 45) {
       bmi = 40;
     }
-    console.log(bmi * (10 / 4));
-    setProgress(bmi * (10 / 4));
+
+    const bmiPercent = bmi * (10 / 4);
+
+    setTimeout(() => setProgress(bmiPercent), bmiPercent * 7);
 
     switch (res.category) {
       case "Underweight":
-        setStyle("#FADA5E");
+        setStyle({
+          backgroundColor: "bg-[#FADA5E]",
+          color: "text-[#FADA5E]",
+        });
         break;
 
       case "Normal weight":
-        setStyle("#86DC3D");
+        setStyle({
+          backgroundColor: "bg-[#86DC3D]",
+          color: "text-[#86DC3D]",
+        });
         break;
 
       case "Overweight":
-        setStyle("#FFBD31");
+        setStyle({
+          backgroundColor: "bg-[#FFBD31]",
+          color: "text-[#FFBD31]",
+        });
         break;
 
       case "Obese":
-        setStyle("#D30000");
+        setStyle({
+          backgroundColor: "bg-[#D30000]",
+          color: "text-[#D30000]",
+        });
         break;
     }
   }, [res]);
@@ -61,9 +77,9 @@ function Bmi() {
             <section className="w-[60vw] flex flex-col items-center justify-center gap-4">
               <h3 className="text-3xl font-[Ubuntu]">
                 According to your BMI, you are{" "}
-                <span className={"text-[" + style + "]"}>{res.category}</span>
+                <span className={style.color}>{res.category}</span>
               </h3>
-              <Progress value={progress} className={"bg-[" + style + "]"} />
+              <Progress value={progress} className={style.backgroundColor} />
             </section>
           </main>
         </>
