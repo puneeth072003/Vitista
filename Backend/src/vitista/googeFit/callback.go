@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -75,7 +76,9 @@ func GooglefitCallback(c *gin.Context) {
 	// 	"https://www.googleapis.com/auth/fitness.blood_glucose.read",
 	// }
 
-	GetSleepData(AccessToken, c)
+	AdditionalSleepInfo(AccessToken,c)
+
+	// GetSleepData(AccessToken, c)
 }
 
 func GetSleepData(accessToken string, c *gin.Context) {
@@ -125,4 +128,62 @@ func constructAPIURL() string {
 		startTime, endTime, activityType)
 
 	return url
+}
+
+
+func AdditionalSleepInfo(accessToken string, c *gin.Context) {
+	fmt.Println("Getting additional sleep info...")
+	// Construct the API endpoint URL
+	userID := "me"
+
+	// Set the start and end times
+	// startTimeMillis := time.Date(2019, 12, 5, 0, 0, 0, 0, time.UTC).Unix() * 1000
+	// endTimeMillis := time.Date(2019, 12, 17, 23, 59, 59, 999999999, time.UTC).Unix() * 1000
+
+	endTimeMillis := time.Now().Unix() * 1000
+	startTimeMillis := time.Now().AddDate(0, 0, -7).Unix() * 1000
+
+	// Build the request body JSON payload
+	requestBody := []byte(fmt.Sprintf(`{
+		"aggregateBy": [
+			{
+				"dataTypeName": "com.google.sleep.segment"
+			}
+		],
+		"endTimeMillis": %d,
+		"startTimeMillis": %d
+	}`, endTimeMillis, startTimeMillis))
+
+	// Build the URL
+	url := fmt.Sprintf("https://www.googleapis.com/fitness/v1/users/%s/dataset:aggregate", userID)
+
+	// Create the HTTP request
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(requestBody))
+	if err != nil {
+		log.Fatalf("Error creating the request: %v", err)
+	}
+
+	// Set the Authorization header
+	req.Header.Set("Authorization", "Bearer "+accessToken)
+	req.Header.Set("Content-Type", "application/json")
+
+	// Make the request
+	client := &http.Client{}
+	response, err := client.Do(req)
+	if err != nil {
+		log.Fatalf("Error making the request: %v", err)
+	}
+	defer response.Body.Close()
+
+	// Read the response body
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		log.Fatalf("Error reading the response body: %v", err)
+	}
+
+	// Print the response body
+	fmt.Println(string(body))
+
+	c.JSON(http.StatusOK, gin.H{"AdditionalSleepData": string(body)})
+
 }
