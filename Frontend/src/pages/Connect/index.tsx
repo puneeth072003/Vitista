@@ -18,7 +18,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
-import { IConnect, IConnectRegister } from "@/interface";
+import { IConnectSuccess, IConnectRegister } from "@/interface";
 
 import axios from "axios";
 
@@ -42,34 +42,33 @@ function Connect() {
   const [firstName, setFirstName] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [messages, setMessages] = useState(
-    "Username has been Taken. Try to set another Username."
-  );
+  const [messages, setMessages] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    const res = await axios.get<IConnect>(`${BACKEND_URL}/v1/signin`, {
-      params: { username, password },
-    });
-
-    if (res.data && "error" in res.data) {
-      setMessages("Invalid Username or Password");
-      setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 5000);
-    } else {
-      dispatch(setUsernameFromConnect(res.data.username));
-      dispatch(setToLocalStorage());
-      setSuccess(true);
-      setMessages("Login Successfull!");
-      setTimeout(() => {
-        setSuccess(false);
-      }, 5000);
-      navigate("/");
-    }
+    await axios
+      .get<IConnectSuccess>(`${BACKEND_URL}/v1/signin`, {
+        params: { username, password },
+      })
+      .then((res) => {
+        dispatch(setUsernameFromConnect(res.data.username));
+        dispatch(setToLocalStorage());
+        setSuccess(true);
+        setMessages("Login Successfull!");
+        setTimeout(() => {
+          setSuccess(false);
+          navigate("/");
+        }, 2000);
+      })
+      .catch(() => {
+        setMessages("Invalid Username or Password");
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
+      });
   };
 
   const handleSignup = async () => {
@@ -77,31 +76,33 @@ function Connect() {
       Username: username,
       Password: password,
     };
-    const res = await axios.post<IConnect>(`${BACKEND_URL}/v1/login`, payload);
-    if ("error" in res.data) {
-      setError(true);
-      setMessages("Username has been Taken. Try to set another Username.");
-      setTimeout(() => {
-        setError(false);
-      }, 5000);
-    } else {
-      const dateOfJoin = new Date().toString();
+    await axios
+      .post<IConnectSuccess>(`${BACKEND_URL}/v1/login`, payload)
+      .then((res) => {
+        const dateOfJoin = new Date().toString();
 
-      const data: IConnectRegister = {
-        username: res.data.username,
-        firstName,
-        dateOfJoin,
-      };
+        const data: IConnectRegister = {
+          username: res.data.username,
+          firstName,
+          dateOfJoin,
+        };
 
-      dispatch(setUserStorageFromConnect(data));
-      dispatch(setToLocalStorage());
-      setSuccess(true);
-      setMessages("Sign Up Successfull!");
-      setTimeout(() => {
-        setSuccess(false);
-      }, 5000);
-      navigate("/");
-    }
+        dispatch(setUserStorageFromConnect(data));
+        dispatch(setToLocalStorage());
+        setSuccess(true);
+        setMessages("Sign Up Successfull!");
+        setTimeout(() => {
+          setSuccess(false);
+          navigate("/");
+        }, 2000);
+      })
+      .catch(() => {
+        setError(true);
+        setMessages("Username has been Taken. Try to set another Username.");
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
+      });
   };
 
   return (
