@@ -12,12 +12,15 @@ import { IPayload, IProps } from "@/interface";
 
 import { useDispatch } from "react-redux";
 
+import { addedData } from "@/redux/slices/formPayload";
+
 import logo from "@/assets/icon.png";
 import FormDateRange from "@/components/custom/FormDateRange";
 import FormSelect from "@/components/custom/FormSelect";
 import FormTimePicker from "@/components/custom/FormTimePicker";
 import "./style.css";
-import { addedData } from "@/redux/slices/formPayload";
+
+
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -85,8 +88,8 @@ function TabletForm({ tabletFormProps }: { tabletFormProps: IProps }) {
               <Input
                 defaultValue={tabletFormProps.tablet}
                 onChange={(e) => tabletFormProps.setTablet(e.target.value)}
-                type="tablet"
-                id="email"
+                type="text"
+                id="tablet"
                 placeholder="Tablet Name"
               />
             </div>
