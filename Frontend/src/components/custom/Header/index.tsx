@@ -43,7 +43,7 @@ function Header() {
   const headerRoutes: IHeaderRoutes[] = [
     {
       title: "Risk Assessment",
-      href: "/algorithms",
+      href: "/risk-assessment",
       description: "Check out our Risk Predictor to predict Breast Cancer",
     },
     {

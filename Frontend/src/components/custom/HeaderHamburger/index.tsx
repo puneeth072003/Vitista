@@ -27,7 +27,7 @@ function HeaderHamburger() {
     },
     {
       title: "Risk Assessment",
-      href: "/algorithms",
+      href: "/risk-assessment",
     },
     {
       title: "Activity Monitor",
@@ -56,7 +56,8 @@ function HeaderHamburger() {
                 key={idx}
                 className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold"
               >
-                <NavLink end
+                <NavLink
+                  end
                   key={idx}
                   onClick={(e) => {
                     e.preventDefault();
