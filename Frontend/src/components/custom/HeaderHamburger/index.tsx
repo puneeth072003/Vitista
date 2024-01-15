@@ -4,11 +4,12 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import HeaderHamburgerConnect from "../HeaderHamburgerConnect";
 
 function HeaderHamburger() {
   const location = useLocation();
+  const navigate = useNavigate();
   return (
     <>
       <Sheet>
@@ -21,6 +22,7 @@ function HeaderHamburger() {
               <NavLink
                 onClick={(e) => {
                   e.preventDefault();
+                  navigate('/')
                   document.getElementById("fa-close")?.click();
                 }}
                 to={"/"}
@@ -33,12 +35,26 @@ function HeaderHamburger() {
               <NavLink
                 onClick={(e) => {
                   e.preventDefault();
+                  navigate('/algorithms')
                   document.getElementById("fa-close")?.click();
                 }}
                 to={"/algorithms"}
                 className="underline-effect"
               >
                 Risk Assessment
+              </NavLink>
+            </Button>
+            <Button className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold">
+              <NavLink
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/fit')
+                  document.getElementById("fa-close")?.click();
+                }}
+                to={"/fit"}
+                className="underline-effect"
+              >
+                Fitness Tracker
               </NavLink>
             </Button>
             {location.pathname !== "/connect" && <HeaderHamburgerConnect />}

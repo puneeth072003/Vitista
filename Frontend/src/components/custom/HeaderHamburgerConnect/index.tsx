@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -20,6 +20,9 @@ import profile from "@/assets/default_profile_pic.png";
 function HeaderHamburgerConnect() {
   const userInfo = useSelector((state: RootState) => state.userStorage);
   const joinedDate = new Date(userInfo.dateOfJoin);
+
+  const navigate = useNavigate();
+
   return (
     <>
       {userInfo.username === "" ? (
@@ -27,6 +30,11 @@ function HeaderHamburgerConnect() {
           <Link
             className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
             to={"/connect"}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/connect");
+              document.getElementById("fa-close")?.click();
+            }}
           >
             Connect
             <FontAwesomeIcon icon={faUser} />
@@ -47,7 +55,9 @@ function HeaderHamburgerConnect() {
                   <AvatarFallback>{userInfo.username}</AvatarFallback>
                 </Avatar>
                 <div className="space-y-1">
-                  <h4 className="text-sm font-semibold">{userInfo.firstName}</h4>
+                  <h4 className="text-sm font-semibold">
+                    {userInfo.firstName}
+                  </h4>
                   <div className="flex items-center pt-2">
                     <CalendarIcon className="mr-2 h-4 w-4 opacity-70" />
                     <span className="text-xs text-muted-foreground">
