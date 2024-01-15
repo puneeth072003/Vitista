@@ -32,6 +32,8 @@ function Header() {
   const location = useLocation();
   const dispatch = useDispatch();
 
+  const isLoading = useSelector((state: RootState) => state.loadingSpinner);
+
   useEffect(() => {
     dispatch(getFromLocalStorage());
   }, [dispatch]);
@@ -83,15 +85,31 @@ function Header() {
             <NavigationMenuList className="gap-[3rem]">
               <NavigationMenuItem>
                 <NavigationMenuLink className="font-medium">
-                  <NavLink end to={"/"} className="underline-effect">
-                    Home
-                  </NavLink>
+                  {isLoading ? (
+                    <span className="cursor-default">Home</span>
+                  ) : (
+                    <NavLink end to={"/"} className="underline-effect">
+                      Home
+                    </NavLink>
+                  )}
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="underline-effect hover:bg-transparent data-[state=closed]:bg-transparent data-[state=open]:bg-transparent">
-                  Features
-                </NavigationMenuTrigger>
+                {isLoading ? (
+                  <NavigationMenuTrigger
+                    disabled
+                    className="underline-effect hover:bg-transparent data-[state=closed]:bg-transparent data-[state=open]:bg-transparent"
+                    style={{ opacity: 1 }}
+                  >
+                    Features
+                  </NavigationMenuTrigger>
+                ) : (
+                  <>
+                    <NavigationMenuTrigger className="underline-effect hover:bg-transparent data-[state=closed]:bg-transparent data-[state=open]:bg-transparent">
+                      Features
+                    </NavigationMenuTrigger>
+                  </>
+                )}
                 <NavigationMenuContent className="shadow shadow-[#00000017] bg-[#00000005]">
                   <ul className="grid gap-1 p-1 md:w-[350px] md:grid-cols-2 lg:w-[350px] shadow shadow-[#00000017] bg-[#00000005]">
                     {headerRoutes.map((page, idx: number) => (
@@ -99,7 +117,8 @@ function Header() {
                         key={idx}
                         className="flex flex-col justify-start items-start p-2"
                       >
-                        <NavLink end
+                        <NavLink
+                          end
                           className="font-[Ubuntu] text-[1rem] underline-effect"
                           key={idx}
                           to={page.href}
