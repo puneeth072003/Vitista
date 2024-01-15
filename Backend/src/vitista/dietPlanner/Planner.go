@@ -59,7 +59,6 @@ func SuggestMealPlan(c *gin.Context) {
 		"Fats":          fatCalories,
 		"Carbohydrates": carbCalories,
 	}
-
 	c.JSON(200, gin.H{"DailyrequiredValues": result})
 }
 

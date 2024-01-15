@@ -30,6 +30,7 @@ func main() {
 		routeGroup.GET("/fit",fit.GetFit)
 		routeGroup.GET("/fit/callback",fit.GooglefitCallback)
 		routeGroup.GET("/suggest_meal_plan",diet.SuggestMealPlan)
+		routeGroup.GET("/calculate_bmi",diet.CalculateBMIHandler)
 	}
 	r.Run("localhost:8080")
 }
