@@ -31,7 +31,7 @@ function HeaderHamburger() {
     },
     {
       title: "Activity Monitor",
-      href: "/fit",
+      href: "/track/fit",
     },
     {
       title: "NutriGuide",
