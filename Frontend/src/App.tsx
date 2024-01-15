@@ -41,7 +41,7 @@ function App() {
       <div
         className={
           loadingSpinner
-            ? "fixed w-full h-full grid place-items-center bg-[#00000043]"
+            ? "fixed w-full h-full grid place-items-center bg-[#00000043] z-10"
             : "hidden"
         }
       >

@@ -28,10 +28,7 @@ function RiskAssessment() {
     formData.append("image", image);
 
     await axios
-      .post(`${BACKEND_URL}/v1/`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      .post(`${BACKEND_URL}/v1/upload`, formData, {
       })
       .then((res) => console.log(res.data))
       .catch((err) => console.error("Error uploading image:", err))

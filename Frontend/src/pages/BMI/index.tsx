@@ -12,6 +12,8 @@ function Bmi() {
   const res: IBMIResult = location.state;
 
   const [progress, setProgress] = useState(0);
+  const [heading, setHeading] = useState("");
+  const [points, setPoints] = useState<string[]>([]);
 
   const [style, setStyle] = useState({
     backgroundColor: "",
@@ -34,6 +36,12 @@ function Bmi() {
           backgroundColor: "bg-[#FADA5E]",
           color: "text-[#FADA5E]",
         });
+        setPoints([
+          "Malnutrition, vitamin deficiencies, anemia (lowered ability to carry blood vessels)",
+          "Osteoporosis, a disease that causes bone weakness, increasing the risk of breaking a bone.",
+          "A decrease in immune  function",
+          "Growth and development issues, particularly in children and teenagers",
+        ])
         break;
 
       case "Normal weight":
@@ -48,6 +56,7 @@ function Bmi() {
           backgroundColor: "bg-[#FFBD31]",
           color: "text-[#FFBD31]",
         });
+        setHeading("Good, Keep following a Healthy Diet");
         break;
 
       case "Obese":
@@ -55,6 +64,13 @@ function Bmi() {
           backgroundColor: "bg-[#D30000]",
           color: "text-[#D30000]",
         });
+        setHeading("Risks Associated with being Overweight");
+        setPoints([
+          "High blood pressure",
+          "Type II diabetes",
+          "An increased risk of mortality compared to those with a  healthy BMI",
+          "Mental illnesses such as clinical depression, anxiety, and others",
+        ]);
         break;
     }
   }, [res]);
@@ -80,6 +96,21 @@ function Bmi() {
                 <span className={style.color}>{res.category}</span>
               </h3>
               <Progress value={progress} className={style.backgroundColor} />
+            </section>
+            <section>
+              <h3 className="text-3xl">{heading}</h3>
+              <ul>
+                {points.map((point, idx) => (
+                  <>
+                    <li
+                      className="ml-5 text-sm font-[Rubik] list-disc"
+                      key={idx}
+                    >
+                      {point}
+                    </li>
+                  </>
+                ))}
+              </ul>
             </section>
           </main>
         </>
