@@ -20,6 +20,7 @@ import Bmi from "@/pages/BMI";
 import RiskAssessment from "@/pages/RiskAssessment";
 import { useEffect } from "react";
 import axios from "axios";
+import NotFound from "./pages/NotFound";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -67,6 +68,7 @@ function App() {
           <Route path="bmi" element={<Bmi />} />
           <Route path="fit" element={<Fit />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster />
     </>
