@@ -5,7 +5,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+
+import { IHeaderRoutes } from "@/interface";
 import HeaderHamburgerConnect from "../HeaderHamburgerConnect";
+
+import './style.css'
+
+const headerRoutes: IHeaderRoutes[] = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "Risk Assessment",
+    href: "/algorithms",
+  },
+  {
+    title: "Fitness Tracker",
+    href: "/fit",
+  },
+  {
+    title: "Diet Planner",
+    href: "/diet",
+  },
+  {
+    title: "BMI Tracker",
+    href: "/bmi",
+  },
+];
 
 function HeaderHamburger() {
   const location = useLocation();
@@ -18,58 +45,25 @@ function HeaderHamburger() {
         </SheetTrigger>
         <SheetContent className="w-[75%]">
           <div className="grid gap-4 py-4 mt-10">
-            <Button className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold">
-              <NavLink
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/");
-                  document.getElementById("fa-close")?.click();
-                }}
-                to={"/"}
-                className="underline-effect"
+            {headerRoutes.map((page, idx) => (
+              <Button
+                key={idx}
+                className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold"
               >
-                Home
-              </NavLink>
-            </Button>
-            <Button className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold">
-              <NavLink
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/algorithms");
-                  document.getElementById("fa-close")?.click();
-                }}
-                to={"/algorithms"}
-                className="underline-effect"
-              >
-                Risk Assessment
-              </NavLink>
-            </Button>
-            <Button className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold">
-              <NavLink
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/diet");
-                  document.getElementById("fa-close")?.click();
-                }}
-                to={"/diet"}
-                className="underline-effect"
-              >
-                Diet Planner
-              </NavLink>
-            </Button>
-            <Button className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold">
-              <NavLink
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/fit");
-                  document.getElementById("fa-close")?.click();
-                }}
-                to={"/fit"}
-                className="underline-effect"
-              >
-                Fitness Tracker
-              </NavLink>
-            </Button>
+                <NavLink
+                  key={idx}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(page.href);
+                    document.getElementById("fa-close")?.click();
+                  }}
+                  to={page.href}
+                  className="underline-effect"
+                >
+                  {page.title}
+                </NavLink>
+              </Button>
+            ))}
             {location.pathname !== "/connect" && <HeaderHamburgerConnect />}
           </div>
         </SheetContent>

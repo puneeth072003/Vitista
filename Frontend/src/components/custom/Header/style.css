@@ -19,6 +19,10 @@ div[data-visible="hamburger"] {
   font-style: italic;
 }
 
+div[data-state="open"], div[data-state="closed"] {
+  background-color: transparent;
+}
+
 @media (max-width: 990px) {
   div[data-visible="large"] {
     display: none;

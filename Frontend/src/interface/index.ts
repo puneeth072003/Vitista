@@ -39,3 +39,9 @@ export type IConnectRegister = {
 export type IUserStorage = IConnectRegister & {
   googleAuthToken: string;
 };
+
+export type IHeaderRoutes = {
+  title: string;
+  href: string;
+  description?: string;
+};
