@@ -14,6 +14,12 @@ function Record() {
 
   const [backendData, setBackendData] = useState<IPayload[]>([]);
 
+  // const [tabletDays, setTabletDays] = useState<Date[]>([]);
+  // const tabletDaysStyle = {
+  //   backgroundColor: "lightgrey",
+  //   borderRadius: "15px",
+  // };
+
   // const bookedDays1 = [new Date(2024, 0, 8), new Date(2024, 0, 9)];
   // const bookedStyle1 = { border: "2px solid black" };
 
@@ -25,6 +31,17 @@ function Record() {
       .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
       .then((res) => setBackendData(res.data.schedules));
   }, []);
+
+  // useEffect(() => {
+  //   setTabletDays(
+  //     backendData.flatMap((schedule) => [
+  //       new Date(schedule.Date_range.From || ""),
+  //       new Date(schedule.Date_range.To || ""),
+  //     ])
+  //   );
+  // }, [backendData]);
+
+  // console.log(tabletDays);
 
   return (
     <>
@@ -52,12 +69,14 @@ function Record() {
               onSelect={(data) => setSelectedDate(data ?? new Date())}
               modifiers={
                 {
+                  // tabletDays,
                   // booked1: bookedDays1,
                   // booked2: bookedDays2,
                 }
               }
               modifiersStyles={
                 {
+                  // tabletDays: tabletDaysStyle,
                   // booked1: bookedStyle1,
                   // booked2: bookedStyle2,
                 }

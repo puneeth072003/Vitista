@@ -13,6 +13,7 @@ import Fit from "@/pages/Fit";
 import PersonalTracker from "@/pages/PersonalTracker";
 import Diet from "@/pages/Diet";
 import Bmi from "@/pages/BMI";
+import RiskAssessment from "@/pages/RiskAssessment";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/record" element={<Record />} />
         <Route path="/form" element={<Form />} />
         <Route path="/connect" element={<Connect />} />
+        <Route path="/risk-assessment" element={<RiskAssessment />} />
         <Route path="/track">
           <Route index element={<PersonalTracker />} />
           <Route path="diet" element={<Diet />} />
