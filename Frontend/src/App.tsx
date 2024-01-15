@@ -9,17 +9,18 @@ import Home from "@/pages/Home";
 import Form from "@/pages/Form";
 import Record from "@/pages/Record";
 import Connect from "@/pages/Connect";
+import Fit from "@/pages/Fit";
 
 function App() {
   return (
     <>
       <Header />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/record" element={<Record />} />
         <Route path="/form" element={<Form />} />
         <Route path="/connect" element={<Connect />} />
+        <Route path="/fit" element={<Fit />} />
       </Routes>
       <Toaster />
     </>
