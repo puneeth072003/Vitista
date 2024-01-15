@@ -21,8 +21,7 @@ func main() {
 	routeGroup := r.Group("/v1")
 	{
 		routeGroup.GET("/home",home.GetHome)
-		routeGroup.GET("/modelProcessing",model.RunModel)
-		routeGroup.POST("/savePayload",home.SavePayload)
+		routeGroup.GET("/modelProcessing1",model.Tumorhandler)
 		routeGroup.POST("/login",login.Login)
 		routeGroup.GET("/signin",login.SignIn)
 		routeGroup.GET("/readcookie",login.ReadCookie)
@@ -31,6 +30,7 @@ func main() {
 		routeGroup.GET("/fit/callback",fit.GooglefitCallback)
 		routeGroup.GET("/suggest_meal_plan",diet.SuggestMealPlan)
 		routeGroup.GET("/calculate_bmi",diet.CalculateBMIHandler)
+		routeGroup.POST("/upload",model.HandleFileUpload)
 	}
 	r.Run("localhost:8080")
 }
