@@ -60,14 +60,14 @@ function RecordTable({
         <TableBody>
           {backendData.map((data, idx) => {
             if (
-              data.DateRange.From === undefined ||
-              data.DateRange.To === undefined ||
+              data.Date_range.From === undefined ||
+              data.Date_range.To === undefined ||
               data.Time === undefined
             )
               return;
             if (data.Period === period) {
-              const fromDate = new Date(data.DateRange.From);
-              const toDate = new Date(data.DateRange.To);
+              const fromDate = new Date(data.Date_range.From);
+              const toDate = new Date(data.Date_range.To);
               const time = new Date(data.Time);
 
               if (
@@ -132,7 +132,7 @@ function RecordTable({
                       <>
                         <Badge
                           variant={taken[idx] ? "outline" : "default"}
-                          className="bg-[#d3d3d35f] cursor-pointer"
+                          className="bg-[#d3d3d35f] cursor-pointer bg-fixed"
                           onClick={() => handleBadge(idx)}
                         >
                           Taken
@@ -144,7 +144,7 @@ function RecordTable({
                           <AlertDialogTrigger asChild>
                             <Badge
                               variant={taken[idx] ? "outline" : "default"}
-                              className="bg-[#000] text-[#fff] hover:bg-[#000] hover:text-[#ff6262] cursor-pointer"
+                              className="bg-[#000] text-[#fff] hover:bg-[#000] hover:text-[#ff6262] cursor-pointer  bg-fixed"
                             >
                               Taken
                             </Badge>

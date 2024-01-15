@@ -2,7 +2,7 @@ import { DateRange } from "react-day-picker";
 
 export interface IPayload {
   Tablet: string | undefined;
-  DateRange: {
+  Date_range: {
     From: string | undefined;
     To: string | undefined;
   };
@@ -22,9 +22,8 @@ export type IProps = {
 };
 
 export type IBackendData = {
-  schedules: IPayload[];
+  schedules: (IPayload & { Username: string })[];
 };
-
 export type IConnectSuccess = {
   message: string;
   username: string;
@@ -44,4 +43,17 @@ export type IHeaderRoutes = {
   title: string;
   href: string;
   description?: string;
+};
+
+export type IBMIResult = {
+  bmi: number;
+  category: string;
+};
+
+export type IDietResult = {
+  DailyrequiredValues: {
+    Carbohydrates: number;
+    Fats: number;
+    Proteins: number;
+  };
 };

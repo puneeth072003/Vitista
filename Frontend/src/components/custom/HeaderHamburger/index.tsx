@@ -6,37 +6,43 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+
 import { IHeaderRoutes } from "@/interface";
 import HeaderHamburgerConnect from "../HeaderHamburgerConnect";
-
-import './style.css'
-
-const headerRoutes: IHeaderRoutes[] = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Risk Assessment",
-    href: "/algorithms",
-  },
-  {
-    title: "Fitness Tracker",
-    href: "/fit",
-  },
-  {
-    title: "Diet Planner",
-    href: "/diet",
-  },
-  {
-    title: "BMI Tracker",
-    href: "/bmi",
-  },
-];
 
 function HeaderHamburger() {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const username = useSelector(
+    (state: RootState) => state.userStorage.username
+  );
+
+  const headerRoutes: IHeaderRoutes[] = [
+    {
+      title: "Home",
+      href: "/",
+    },
+    {
+      title: "Risk Assessment",
+      href: "/algorithms",
+    },
+    {
+      title: "Activity Monitor",
+      href: "/fit",
+    },
+    {
+      title: "NutriGuide",
+      href: username !== "" ? "/track" : "/connect",
+    },
+    {
+      title: "Weight Index Tracker",
+      href: username !== "" ? "/track" : "/connect",
+    },
+  ];
+
   return (
     <>
       <Sheet>
@@ -50,7 +56,7 @@ function HeaderHamburger() {
                 key={idx}
                 className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold"
               >
-                <NavLink
+                <NavLink end
                   key={idx}
                   onClick={(e) => {
                     e.preventDefault();

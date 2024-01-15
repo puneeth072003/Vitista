@@ -1,111 +1,100 @@
-import { useState, FormEvent } from "react";
+import { useLocation } from "react-router-dom";
 
-import axios from "axios";
+import { IDietResult } from "@/interface";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
-import DietSelect from "@/components/custom/DietSelect";
-import logo from "@/assets/icon.png";
-import "./style.css";
+import './style.css'
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+function Bmi() {
+  const location = useLocation();
 
-function Diet() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
-  const [activityLevel, setActivityLevel] = useState("low");
+  const res: IDietResult = location.state;
 
-  const [result, setResult] = useState<unknown>();
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    await axios
-      .get(`${BACKEND_URL}/v1/suggest_meal_plan`, {
-        params: { name, age, weight, height, activity_level: activityLevel },
-      })
-      .then((res) => setResult(res))
-      .catch((err) => console.log(err));
-  };
+  useEffect(() => {
+    console.log(res);
+  }, [res]);
 
   return (
     <>
-      <main className="flex justify-center items-center">
-        <section
-          data-place="diet"
-          className="shadow shadow-[#00000017] bg-[#00000005] w-[35%] p-7"
-        >
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img className="mx-auto h-10 w-auto" src={logo} alt="Logo" />
-            <h2 className="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Enter your Details For Diet Plans
-            </h2>
-          </div>
-
-          <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid max-w-sm items-center gap-1.5">
-                <Label htmlFor="firstName">First Name</Label>
-                <Input
-                  defaultValue={name}
-                  onChange={(e) => setName(e.target.value)}
-                  type="text"
-                  id="firstName"
-                  placeholder="Enter your First Name..."
-                />
+      {location.state ? (
+        <>
+          <main className="flex flex-col justify-center items-center gap-[5rem] py-[1.5rem] px-6 lg:px-8">
+            <section className="flex flex-col justify-center items-center gap-6 pt-16">
+              <h1 className="text-5xl font-[Ubuntu]">NutriGuide</h1>
+              <p className="text-lg font-[Rubik]">
+                A diet containing adequate energy should be consumed to protect
+                the appropriate combination of weight and body composition.
+              </p>
+            </section>
+            <section className="w-[85vw] flex flex-col items-center justify-center gap-8">
+              <h3 className="text-3xl font-[Ubuntu] text-center">
+                You'll be following a diet that comprises of
+              </h3>
+              <div data-style="flex-col" className="flex w-full justify-around items-start gap-8">
+                <div className="flex flex-col justify-center w-full">
+                  <h4 className="text-2xl font-[Poppins]">
+                    {res.DailyrequiredValues.Carbohydrates} Calories of
+                    <span className="text-red-300"> Carbohydrates</span>
+                  </h4>
+                  <h5 className="text-lg font-[Rubik]">
+                    Foods that Provide you high Carbs are:{" "}
+                  </h5>
+                  <ul>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Rice</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Canned Fruit</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Donuts</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Apples</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Cereals</li>
+                  </ul>
+                </div>
+                <div className="flex flex-col justify-center w-full">
+                  <h4 className="text-2xl font-[Poppins]">
+                    {res.DailyrequiredValues.Fats} Calories of{" "}
+                    <span className="text-green-300">Fats</span>
+                  </h4>
+                  <h5 className="text-lg font-[Rubik]">
+                    Healthiest High Fat Foods are:{" "}
+                  </h5>
+                  <ul>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Fatty Fish</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Chia Seeds</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Dark Chocolate</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Avocado</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Flax Seeds</li>
+                  </ul>
+                </div>
+                <div className="flex flex-col justify-center w-full">
+                  <h4 className="text-2xl font-[Poppins]">
+                    {res.DailyrequiredValues.Proteins} Calories of{" "}
+                    <span className="text-yellow-300">Proteins</span>
+                  </h4>
+                  <h5 className="text-lg font-[Rubik]">
+                    Some high Protein Foods that you can consume are:{" "}
+                  </h5>
+                  <ul>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Eggs</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Almond</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Yogurt</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Fish</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">Lentils</li>
+                  </ul>
+                </div>
               </div>
-              <div className="grid max-w-sm items-center gap-1.5">
-                <Label htmlFor="age">Age</Label>
-                <Input
-                  defaultValue={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  type="number"
-                  id="age"
-                  placeholder="Enter your Age..."
-                />
-              </div>
-              <div className="grid max-w-sm items-center gap-1.5">
-                <Label htmlFor="height">Height</Label>
-                <Input
-                  defaultValue={height}
-                  onChange={(e) => setHeight(e.target.value)}
-                  type="number"
-                  id="height"
-                  placeholder="Enter your Height..."
-                />
-              </div>
-              <div className="grid max-w-sm items-center gap-1.5">
-                <Label htmlFor="weight">Weight</Label>
-                <Input
-                  defaultValue={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  type="number"
-                  id="weight"
-                  placeholder="Enter your Name..."
-                />
-              </div>
-              <div className="grid max-w-sm items-center gap-1.5">
-                <Label htmlFor="age">Activity Level</Label>
-                <DietSelect
-                  activityLevel={activityLevel}
-                  setActivityLevel={setActivityLevel}
-                />
-              </div>
-              <div className="grid max-w-sm items-center gap-1.5">
-                <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6] hover:text-[0.95rem] transition-[font-size]">
-                  Create Register
-                </Button>
-              </div>
-            </form>
-          </div>
-        </section>
-      </main>
+            </section>
+          </main>
+        </>
+      ) : (
+        <>
+          <main className="flex justify-center items-center h-[85vh]">
+            <h1 className="text-5xl font-[Poppins] text-cyan-400">
+              Page Not Found
+            </h1>
+          </main>
+        </>
+      )}
     </>
   );
 }
 
-export default Diet;
+export default Bmi;

@@ -20,19 +20,17 @@ import FormSelect from "@/components/custom/FormSelect";
 import FormTimePicker from "@/components/custom/FormTimePicker";
 import "./style.css";
 
-
-
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 function customToast(payload: IPayload) {
   if (
-    payload.DateRange.From === undefined ||
-    payload.DateRange.To === undefined
+    payload.Date_range.From === undefined ||
+    payload.Date_range.To === undefined
   )
     return;
 
-  const startDate = new Date(payload.DateRange.From);
-  const endDate = new Date(payload.DateRange.To);
+  const startDate = new Date(payload.Date_range.From);
+  const endDate = new Date(payload.Date_range.To);
 
   toast("Your Tablet Course has been Registered", {
     description: `Tablet Course from ${startDate.toLocaleString("default", {
@@ -55,7 +53,7 @@ function TabletForm({ tabletFormProps }: { tabletFormProps: IProps }) {
 
     const payload: IPayload = {
       Tablet: tabletFormProps.tablet,
-      DateRange: {
+      Date_range: {
         From: tabletFormProps.date?.from?.toString(),
         To: tabletFormProps.date?.to?.toString(),
       },

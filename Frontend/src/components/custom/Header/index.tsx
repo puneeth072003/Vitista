@@ -19,34 +19,14 @@ import { getFromLocalStorage } from "@/redux/slices/userStorage";
 
 import { IHeaderRoutes } from "@/interface";
 
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+
 import HeaderConnect from "../HeaderConnect";
 import HeaderHamburger from "../HeaderHamburger";
 
 import icon from "@/assets/icon.png";
 import "./style.css";
-
-const headerRoutes: IHeaderRoutes[] = [
-  {
-    title: "Risk Assessment",
-    href: "/algorithms",
-    description: "Track your BMI using our BMI Tracker",
-  },
-  {
-    title: "Fitness Tracker",
-    href: "/fit",
-    description: "Track your BMI using our BMI Tracker",
-  },
-  {
-    title: "Diet Planner",
-    href: "/diet",
-    description: "Track your BMI using our BMI Tracker",
-  },
-  {
-    title: "BMI Tracker",
-    href: "/bmi",
-    description: "Track your BMI using our BMI Tracker",
-  },
-];
 
 function Header() {
   const location = useLocation();
@@ -55,6 +35,34 @@ function Header() {
   useEffect(() => {
     dispatch(getFromLocalStorage());
   }, [dispatch]);
+
+  const username = useSelector(
+    (state: RootState) => state.userStorage.username
+  );
+
+  const headerRoutes: IHeaderRoutes[] = [
+    {
+      title: "Risk Assessment",
+      href: "/algorithms",
+      description: "Check out our Risk Predictor to predict Breast Cancer",
+    },
+    {
+      title: "Activity Monitor",
+      href: "/fit",
+      description:
+        "Track your Sleep Cycle with out Integrated Activity Monitor",
+    },
+    {
+      title: "NutriGuide",
+      href: username !== "" ? "/track" : "/connect",
+      description: "Plan a suitable Lifestyle with our Diet NutriGuide",
+    },
+    {
+      title: "Body Shape Index",
+      href: username !== "" ? "/track" : "/connect",
+      description: "Track your BMI using our Body Shape Index",
+    },
+  ];
 
   return (
     <>
@@ -75,7 +83,7 @@ function Header() {
             <NavigationMenuList className="gap-[3rem]">
               <NavigationMenuItem>
                 <NavigationMenuLink className="font-medium">
-                  <NavLink to={"/"} className="underline-effect">
+                  <NavLink end to={"/"} className="underline-effect">
                     Home
                   </NavLink>
                 </NavigationMenuLink>
@@ -85,13 +93,15 @@ function Header() {
                   Features
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="shadow shadow-[#00000017] bg-[#00000005]">
-                  <ul className="grid gap-1 p-4 md:w-[350px] md:grid-cols-2 lg:w-[350px] shadow shadow-[#00000017] bg-[#00000005]">
+                  <ul className="grid gap-1 p-1 md:w-[350px] md:grid-cols-2 lg:w-[350px] shadow shadow-[#00000017] bg-[#00000005]">
                     {headerRoutes.map((page, idx: number) => (
-                      <li className="flex flex-col justify-start items-start p-2">
-                        <NavLink
-                          className="font-[Ubuntu] text-[1rem]"
+                      <li
+                        key={idx}
+                        className="flex flex-col justify-start items-start p-2"
+                      >
+                        <NavLink end
+                          className="font-[Ubuntu] text-[1rem] underline-effect"
                           key={idx}
-                          title={page.title}
                           to={page.href}
                         >
                           {page.title}
