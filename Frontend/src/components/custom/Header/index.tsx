@@ -67,6 +67,16 @@ function Header() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink className="font-medium">
+                  <NavLink
+                    to={"/diet"}
+                    className="underline-effect text-center"
+                  >
+                    Diet Planner
+                  </NavLink>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink className="font-medium">
                   <NavLink to={"/fit"} className="underline-effect text-center">
                     Fitness Tracker
                   </NavLink>

@@ -22,7 +22,7 @@ function HeaderHamburger() {
               <NavLink
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate('/')
+                  navigate("/");
                   document.getElementById("fa-close")?.click();
                 }}
                 to={"/"}
@@ -35,7 +35,7 @@ function HeaderHamburger() {
               <NavLink
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate('/algorithms')
+                  navigate("/algorithms");
                   document.getElementById("fa-close")?.click();
                 }}
                 to={"/algorithms"}
@@ -48,7 +48,20 @@ function HeaderHamburger() {
               <NavLink
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate('/fit')
+                  navigate("/diet");
+                  document.getElementById("fa-close")?.click();
+                }}
+                to={"/diet"}
+                className="underline-effect"
+              >
+                Diet Planner
+              </NavLink>
+            </Button>
+            <Button className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold">
+              <NavLink
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/fit");
                   document.getElementById("fa-close")?.click();
                 }}
                 to={"/fit"}
