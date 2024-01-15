@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { IPayload, IProps } from "@/interface";
 
 import { useDispatch } from "react-redux";
+import { switchState } from "@/redux/slices/loadingSpinner";
 
 import { addedData } from "@/redux/slices/formPayload";
 
@@ -51,6 +52,8 @@ function TabletForm({ tabletFormProps }: { tabletFormProps: IProps }) {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    dispatch(switchState(true));
+
     const payload: IPayload = {
       Tablet: tabletFormProps.tablet,
       Date_range: {
@@ -64,7 +67,8 @@ function TabletForm({ tabletFormProps }: { tabletFormProps: IProps }) {
     await axios
       .post(`${BACKEND_URL}/v1/savePayload`, payload)
       .then(() => dispatch(addedData(payload)))
-      .then(() => customToast(payload));
+      .then(() => customToast(payload))
+      .finally(() => dispatch(switchState(false)));
   };
   return (
     <>

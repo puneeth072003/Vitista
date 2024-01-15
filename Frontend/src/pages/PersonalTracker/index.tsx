@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 
 import { IDietResult, IBMIResult } from "@/interface";
 
+import { useDispatch } from "react-redux";
+import { switchState } from "@/redux/slices/loadingSpinner";
+
 import { useNavigate } from "react-router-dom";
 
 import { useSelector } from "react-redux";
@@ -27,23 +30,26 @@ function PersonalTracker() {
   const [activityLevel, setActivityLevel] = useState("low");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleDiet = async () => {
+    dispatch(switchState(true))
     await axios
       .get<IDietResult>(`${BACKEND_URL}/v1/suggest_meal_plan`, {
         params: { name, age, weight, height, activity_level: activityLevel },
       })
       .then((res) => navigate("/track/diet", { state: res.data }))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)).finally(() => dispatch(switchState(false)))
   };
 
   const handleBMI = async () => {
+    dispatch(switchState(true))
     await axios
       .get<IBMIResult>(`${BACKEND_URL}/v1/calculate_bmi`, {
         params: { name, age, weight, height, activity_level: activityLevel },
       })
       .then((res) => navigate("/track/bmi", { state: res.data }))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)).finally(() => dispatch(switchState(false)))
   };
 
   return (

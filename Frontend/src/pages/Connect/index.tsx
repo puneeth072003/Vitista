@@ -25,6 +25,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
+import { switchState } from "@/redux/slices/loadingSpinner";
 
 import {
   setUsernameFromConnect,
@@ -48,6 +49,7 @@ function Connect() {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
+    dispatch(switchState(true));
     await axios
       .get<IConnectSuccess>(`${BACKEND_URL}/v1/signin`, {
         params: { username, password },
@@ -68,10 +70,12 @@ function Connect() {
         setTimeout(() => {
           setError(false);
         }, 5000);
-      });
+      })
+      .finally(() => dispatch(switchState(false)));
   };
 
   const handleSignup = async () => {
+    dispatch(switchState(true))
     const payload = {
       Username: username,
       Password: password,
@@ -102,7 +106,7 @@ function Connect() {
         setTimeout(() => {
           setError(false);
         }, 5000);
-      });
+      }).finally(() => dispatch(switchState(false)))
   };
 
   return (

@@ -5,6 +5,10 @@ import axios from "axios";
 import { Calendar } from "@/components/ui/calendar";
 import { IPayload, IBackendData } from "@/interface";
 
+import { useDispatch } from "react-redux";
+
+import { switchState } from "@/redux/slices/loadingSpinner/index";
+
 import RecordTable from "@/components/custom/RecordTable";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -13,6 +17,8 @@ function Record() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   const [backendData, setBackendData] = useState<IPayload[]>([]);
+
+  const dispatch = useDispatch();
 
   // const [tabletDays, setTabletDays] = useState<Date[]>([]);
   // const tabletDaysStyle = {
@@ -27,10 +33,15 @@ function Record() {
   // const bookedStyle2 = { border: "2px solid red" };
 
   useEffect(() => {
-    axios
-      .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
-      .then((res) => setBackendData(res.data.schedules));
-  }, []);
+    const fetchData = async () => {
+      dispatch(switchState(true));
+      await axios
+        .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
+        .then((res) => setBackendData(res.data.schedules))
+        .then(() => dispatch(switchState(false)));
+    };
+    fetchData();
+  }, [dispatch]);
 
   // useEffect(() => {
   //   setTabletDays(

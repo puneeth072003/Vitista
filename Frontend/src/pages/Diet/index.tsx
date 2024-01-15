@@ -2,18 +2,12 @@ import { useLocation } from "react-router-dom";
 
 import { IDietResult } from "@/interface";
 
-import { useEffect } from "react";
-
-import './style.css'
+import "./style.css";
 
 function Bmi() {
   const location = useLocation();
 
   const res: IDietResult = location.state;
-
-  useEffect(() => {
-    console.log(res);
-  }, [res]);
 
   return (
     <>
@@ -31,7 +25,10 @@ function Bmi() {
               <h3 className="text-3xl font-[Ubuntu] text-center">
                 You'll be following a diet that comprises of
               </h3>
-              <div data-style="flex-col" className="flex w-full justify-around items-start gap-8">
+              <div
+                data-style="flex-col"
+                className="flex w-full justify-around items-start gap-8"
+              >
                 <div className="flex flex-col justify-center w-full">
                   <h4 className="text-2xl font-[Poppins]">
                     {res.DailyrequiredValues.Carbohydrates} Calories of
@@ -41,11 +38,21 @@ function Bmi() {
                     Foods that Provide you high Carbs are:{" "}
                   </h5>
                   <ul>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Rice</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Canned Fruit</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Donuts</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Apples</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Cereals</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Rice
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Canned Fruit
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Donuts
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Apples
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Cereals
+                    </li>
                   </ul>
                 </div>
                 <div className="flex flex-col justify-center w-full">
@@ -57,11 +64,21 @@ function Bmi() {
                     Healthiest High Fat Foods are:{" "}
                   </h5>
                   <ul>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Fatty Fish</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Chia Seeds</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Dark Chocolate</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Avocado</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Flax Seeds</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Fatty Fish
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Chia Seeds
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Dark Chocolate
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Avocado
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Flax Seeds
+                    </li>
                   </ul>
                 </div>
                 <div className="flex flex-col justify-center w-full">
@@ -73,11 +90,21 @@ function Bmi() {
                     Some high Protein Foods that you can consume are:{" "}
                   </h5>
                   <ul>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Eggs</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Almond</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Yogurt</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Fish</li>
-                    <li className="ml-5 text-sm font-[Rubik] list-disc">Lentils</li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Eggs
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Almond
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Yogurt
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Fish
+                    </li>
+                    <li className="ml-5 text-sm font-[Rubik] list-disc">
+                      Lentils
+                    </li>
                   </ul>
                 </div>
               </div>
