@@ -2,6 +2,7 @@ package main
 
 import (
 	home "vitista/personal_healthcare_app/controllers"
+	diet "vitista/personal_healthcare_app/dietPlanner"
 	fit "vitista/personal_healthcare_app/googeFit"
 	login "vitista/personal_healthcare_app/login"
 	model "vitista/personal_healthcare_app/runners"
@@ -28,6 +29,8 @@ func main() {
 		routeGroup.GET("/getall",home.GetAll)
 		routeGroup.GET("/fit",fit.GetFit)
 		routeGroup.GET("/fit/callback",fit.GooglefitCallback)
+		routeGroup.GET("/suggest_meal_plan",diet.SuggestMealPlan)
+		routeGroup.GET("/calculate_bmi",diet.CalculateBMIHandler)
 	}
 	r.Run("localhost:8080")
 }
