@@ -12,8 +12,6 @@ import { RootState } from "@/redux/store";
 import { IHeaderRoutes } from "@/interface";
 import HeaderHamburgerConnect from "../HeaderHamburgerConnect";
 
-import "./style.css";
-
 function HeaderHamburger() {
   const location = useLocation();
   const navigate = useNavigate();
