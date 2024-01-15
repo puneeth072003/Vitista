@@ -2,14 +2,20 @@ package model
 
 import (
 	"net/http"
+	"os"
 	"path/filepath"
 
 	"github.com/gin-gonic/gin"
 )
 
 func HandleFileUpload(c *gin.Context) {
-    const uploadDirectory = "C:/Users/HOME/Desktop/Projects/GfG/Backend/script/assets"
+    currentDir, err := os.Getwd()
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Error getting current working directory"})
+        return
+    }
 
+    uploadDirectory := filepath.Join(currentDir, "../..", "script/assets")
     // Parse the form data to retrieve the file
     file, err := c.FormFile("image")
     if err != nil {

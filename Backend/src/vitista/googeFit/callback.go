@@ -15,6 +15,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
+var AccessToken string
 func GooglefitCallback(c *gin.Context) {
 	callbackcode := c.Query("code")
 
@@ -66,72 +67,13 @@ func GooglefitCallback(c *gin.Context) {
 	}
 
 	// Access the access token
-	AccessToken := tokenResponse.AccessToken
+	AccessToken = tokenResponse.AccessToken
 	fmt.Println("Access Token:", AccessToken)
 
-	// scopes := []string{
-	// 	"https://www.googleapis.com/auth/fitness.sleep.read",
-	// 	"https://www.googleapis.com/auth/fitness.nutrition.read",
-	// 	"https://www.googleapis.com/auth/fitness.blood_pressure.read",
-	// 	"https://www.googleapis.com/auth/fitness.blood_glucose.read",
-	// }
-
-	AdditionalSleepInfo(AccessToken,c)
-
-	// GetSleepData(AccessToken, c)
+	c.Redirect(http.StatusSeeOther, "http://localhost:5173/home")
 }
 
-func GetSleepData(accessToken string, c *gin.Context) {
-
-	fmt.Println("Getting sleep data...")
-	// Construct the API endpoint URL
-	apiURL := constructAPIURL()
-
-	// Create an HTTP request
-	req, err := http.NewRequest("GET", apiURL, nil)
-	if err != nil {
-		fmt.Println("Error creating HTTP request")
-		return
-	}
-
-	// Set the Authorization header with the access token
-	req.Header.Set("Authorization", "Bearer "+accessToken)
-
-	// Make the HTTP request
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Println("Error making HTTP request")
-		return
-	}
-	defer resp.Body.Close()
-
-	// Read and parse the response body
-	var sleepData interface{}
-	err = json.NewDecoder(resp.Body).Decode(&sleepData)
-	if err != nil {
-		fmt.Println("Error decoding JSON")
-		return
-	}
-
-
-
-	c.JSON(http.StatusOK, gin.H{"SleepData": sleepData,"Status":"Success"})
-}
-
-func constructAPIURL() string {
-	endTime := time.Now().Format("2006-01-02T15:04:05.999Z")
-	startTime := time.Now().AddDate(0, 0, -7).Format("2006-01-02T15:04:05.000Z")
-	activityType := "72"
-
-	// Build the URL with parameters
-	url := fmt.Sprintf("https://www.googleapis.com/fitness/v1/users/me/sessions?startTime=%s&endTime=%s&activityType=%s",
-		startTime, endTime, activityType)
-
-	return url
-}
-
-
-func AdditionalSleepInfo(accessToken string, c *gin.Context) {
+func AdditionalSleepInfo(c *gin.Context) {
 	fmt.Println("Getting additional sleep info...")
 	// Construct the API endpoint URL
 	userID := "me"
@@ -164,7 +106,7 @@ func AdditionalSleepInfo(accessToken string, c *gin.Context) {
 	}
 
 	// Set the Authorization header
-	req.Header.Set("Authorization", "Bearer "+accessToken)
+	req.Header.Set("Authorization", "Bearer "+ AccessToken)
 	req.Header.Set("Content-Type", "application/json")
 
 	// Make the request
@@ -185,5 +127,4 @@ func AdditionalSleepInfo(accessToken string, c *gin.Context) {
 	fmt.Println(string(body))
 
 	c.JSON(http.StatusOK, gin.H{"AdditionalSleepData": string(body)})
-
 }
