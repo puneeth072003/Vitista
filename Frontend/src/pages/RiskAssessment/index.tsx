@@ -28,8 +28,7 @@ function RiskAssessment() {
     formData.append("image", image);
 
     await axios
-      .post(`${BACKEND_URL}/v1/upload`, formData, {
-      })
+      .post(`${BACKEND_URL}/v1/upload`, formData, {})
       .then((res) => console.log(res.data))
       .catch((err) => console.error("Error uploading image:", err))
       .finally(() => dispatch(switchState(false)));
@@ -59,10 +58,15 @@ function RiskAssessment() {
           <Input
             id="picture"
             type="file"
-            accept="image/png"
+            accept=".jpg"
             onChange={handleImageChange}
           />
-          <Button onClick={handleUpload}>Submit</Button>
+          <Button
+            className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6] hover:text-[0.95rem] transition-[font-size]"
+            onClick={handleUpload}
+          >
+            Submit
+          </Button>
         </section>
       </main>
     </>

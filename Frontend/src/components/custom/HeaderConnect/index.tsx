@@ -25,20 +25,43 @@ function HeaderConnect() {
   const userInfo = useSelector((state: RootState) => state.userStorage);
   const joinedDate = new Date(userInfo.dateOfJoin);
 
+  const isLoading = useSelector((state: RootState) => state.loadingSpinner);
+
   return (
     <>
       <NavigationMenuItem>
         <NavigationMenuLink className="font-medium">
           {userInfo.username === "" ? (
-            <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]">
-              <Link
-                className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
-                to={"/connect"}
-              >
-                Connect
-                <FontAwesomeIcon icon={faUser} />
-              </Link>
-            </Button>
+            <>
+              {isLoading ? (
+                <Button
+                  disabled
+                  className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]"
+                  style={{opacity: 1}}
+                >
+                  <Link
+                    className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
+                    to={"/connect"}
+                  >
+                    Connect
+                    <FontAwesomeIcon icon={faUser} />
+                  </Link>
+                </Button>
+              ) : (
+                <Button
+                  
+                  className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]"
+                >
+                  <Link
+                    className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
+                    to={"/connect"}
+                  >
+                    Connect
+                    <FontAwesomeIcon icon={faUser} />
+                  </Link>
+                </Button>
+              )}
+            </>
           ) : (
             <>
               <HoverCard>
