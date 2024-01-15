@@ -45,12 +45,12 @@ export type IHeaderRoutes = {
   description?: string;
 };
 
-export type IDietResult = {
+export type IBMIResult = {
   bmi: number;
   category: string;
 };
 
-export type IBMIResult = {
+export type IDietResult = {
   DailyrequiredValues: {
     Carbohydrates: number;
     Fats: number;
