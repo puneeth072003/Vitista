@@ -22,6 +22,7 @@ func main() {
 	{
 		routeGroup.GET("/home",home.GetHome)
 		routeGroup.GET("/modelProcessing1",model.Tumorhandler)
+		routeGroup.GET("/reqSleepData",fit.AdditionalSleepInfo)
 		routeGroup.POST("/login",login.Login)
 		routeGroup.GET("/signin",login.SignIn)
 		routeGroup.GET("/readcookie",login.ReadCookie)
