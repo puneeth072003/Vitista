@@ -30,15 +30,15 @@ function HeaderHamburger() {
       href: "/algorithms",
     },
     {
-      title: "Fitness Tracker",
+      title: "Activity Monitor",
       href: "/fit",
     },
     {
-      title: "Diet Planner",
+      title: "NutriGuide",
       href: username !== "" ? "/track" : "/connect",
     },
     {
-      title: "BMI Tracker",
+      title: "Weight Index Tracker",
       href: username !== "" ? "/track" : "/connect",
     },
   ];
@@ -56,7 +56,7 @@ function HeaderHamburger() {
                 key={idx}
                 className="text-[#000] shadow-none bg-[transparent] flex justify-center items-center gap-[0.5rem] font-[Poppins] hover-button font-bold"
               >
-                <NavLink
+                <NavLink end
                   key={idx}
                   onClick={(e) => {
                     e.preventDefault();

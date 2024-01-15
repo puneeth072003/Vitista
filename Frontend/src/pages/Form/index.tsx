@@ -62,7 +62,7 @@ function Form() {
         className="flex justify-center items-center gap-[5rem] py-[1.5rem] px-6 lg:px-8"
       >
         <TabletForm tabletFormProps={tabletFormProps} />
-        <section data-place="form" className="w-[30%] self-start">
+        <section data-place="form" className="w-[30%]  self-end">
           <ScrollArea className="h-full w-full rounded-md border shadow shadow-[#00000017] bg-[#00000005]">
             <div className="p-4">
               <h4 className="mb-5 text-sm font-bold text-[1rem] leading-none text-center font-[Ubuntu]">

@@ -79,7 +79,7 @@ function PersonalTracker() {
                   onChange={(e) => setHeight(e.target.value)}
                   type="number"
                   id="height"
-                  placeholder="Enter your Height..."
+                  placeholder="Your Height in cms..."
                 />
               </div>
               <div className="grid max-w-sm items-center gap-1.5">
@@ -89,7 +89,7 @@ function PersonalTracker() {
                   onChange={(e) => setWeight(e.target.value)}
                   type="number"
                   id="weight"
-                  placeholder="Enter your Name..."
+                  placeholder="Your Name in kgs..."
                 />
               </div>
               <div className="grid max-w-sm items-center gap-1.5">
@@ -101,13 +101,19 @@ function PersonalTracker() {
               </div>
               <div className="flex justify-center items-center max-w-sm gap-1.5">
                 <Button
-                  onClick={handleDiet}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDiet();
+                  }}
                   className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6] hover:text-[0.95rem] transition-[font-size]"
                 >
                   Get your Diet
                 </Button>
                 <Button
-                  onClick={handleBMI}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleBMI();
+                  }}
                   className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6] hover:text-[0.95rem] transition-[font-size]"
                 >
                   Get your BMI Score

@@ -47,19 +47,20 @@ function Header() {
       description: "Check out our Risk Predictor to predict Breast Cancer",
     },
     {
-      title: "Fitness Tracker",
+      title: "Activity Monitor",
       href: "/fit",
-      description: "Track your Sleep Cycle with out Integrated Fitness Tracker",
+      description:
+        "Track your Sleep Cycle with out Integrated Activity Monitor",
     },
     {
-      title: "Diet Planner",
+      title: "NutriGuide",
       href: username !== "" ? "/track" : "/connect",
-      description: "Plan a suitable Lifestyle with our Diet Planner",
+      description: "Plan a suitable Lifestyle with our Diet NutriGuide",
     },
     {
-      title: "BMI Tracker",
+      title: "Body Shape Index",
       href: username !== "" ? "/track" : "/connect",
-      description: "Track your BMI using our BMI Tracker",
+      description: "Track your BMI using our Body Shape Index",
     },
   ];
 
@@ -82,7 +83,7 @@ function Header() {
             <NavigationMenuList className="gap-[3rem]">
               <NavigationMenuItem>
                 <NavigationMenuLink className="font-medium">
-                  <NavLink to={"/"} className="underline-effect">
+                  <NavLink end to={"/"} className="underline-effect">
                     Home
                   </NavLink>
                 </NavigationMenuLink>
@@ -98,10 +99,9 @@ function Header() {
                         key={idx}
                         className="flex flex-col justify-start items-start p-2"
                       >
-                        <NavLink
+                        <NavLink end
                           className="font-[Ubuntu] text-[1rem] underline-effect"
                           key={idx}
-                          title={page.title}
                           to={page.href}
                         >
                           {page.title}
