@@ -1,40 +1,30 @@
 package model
 
 import (
+	"bytes"
+	"os/exec"
+
 	"github.com/gin-gonic/gin"
 )
 
-func RunModel(c *gin.Context) {
-	c.JSON(200, gin.H{"path": getImage("Puneeth")})
+func Tumorhandler(c *gin.Context) {
+    // Command to execute the Python script (no arguments)
+    cmd := exec.Command("python", "../../../script/BrainTumorRunner.py")
 
-	// modelPath := giveModelPath("Breast_Cancer_Predictor")
+    // Capture output in a buffer
+    var out bytes.Buffer
+    cmd.Stdout = &out
 
-	// // Create a backend receiver
-	// backend := gorgonnx.NewGraph() 
+    // Execute the command
+    err := cmd.Run()
+    if err != nil {
+        c.String(500, err.Error()) // Handle error
+        return
+    }
 
-	// model := onnx.NewModel(backend)
+    // Get the Python script's output
+    output := out.String()
 
-	// // read the onnx model
-	// b, _ := ioutil.ReadFile(modelPath)
-	// // Decode it into the model
-	// err := model.UnmarshalBinary(b)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// input := map[string]float64{
-    //     "texture_se":      0.9063,
-    //     "area_se":         153.40,
-    //     "smoothness_se":   0.006399,
-    //     "concavity_se":    0.05373,
-    //     "concavity_worst": 0.7119,
-    // }
-	// model.SetInput(0, input)
-	// err = backend.Run()
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// // Check error
-	// output, _ := model.GetOutputTensors()
-	// fmt.Println(output[0])
+    // Return the output as a response
+    c.String(200, output)
 }
