@@ -44,12 +44,10 @@ function Form() {
   const payload = useSelector((state: RootState) => state.formPayload);
 
   useEffect(() => {
-    async () => {
-      await axios
-        .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
-        .then((res) => dispatch(dataFetch(res.data.schedules)))
-        .then((res) => console.log(res.payload));
-    };
+    axios
+      .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
+      .then((res) => dispatch(dataFetch(res.data)))
+      .then((res) => console.log(res.payload));
 
     return () => {
       if (reset) {
@@ -92,20 +90,21 @@ function Form() {
                       End Date
                     </h3>
                   </div>
-                  {payload.map((elem) => {
+                  <Separator className="my-2" />
+                  {payload.map((elem, idx: number) => {
                     if (
-                      elem.DateRange.From === undefined ||
-                      elem.DateRange.To === undefined
+                      elem.Date_range.From === undefined ||
+                      elem.Date_range.To === undefined
                     )
                       return;
 
-                    const fromDate = new Date(elem.DateRange.From);
-                    const toDate = new Date(elem.DateRange.To);
+                    const fromDate = new Date(elem.Date_range.From);
+                    const toDate = new Date(elem.Date_range.To);
 
                     return (
                       <>
                         <div
-                          key={elem.Tablet}
+                          key={idx}
                           className="text-sm flex justify-between items-center"
                         >
                           <h3 className="px-2 text-center font-[Poppins]">
