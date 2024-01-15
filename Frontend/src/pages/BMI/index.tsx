@@ -36,12 +36,13 @@ function Bmi() {
           backgroundColor: "bg-[#FADA5E]",
           color: "text-[#FADA5E]",
         });
+        setHeading("Risks Associated with being Underweight");
         setPoints([
           "Malnutrition, vitamin deficiencies, anemia (lowered ability to carry blood vessels)",
           "Osteoporosis, a disease that causes bone weakness, increasing the risk of breaking a bone.",
           "A decrease in immune  function",
           "Growth and development issues, particularly in children and teenagers",
-        ])
+        ]);
         break;
 
       case "Normal weight":
@@ -49,6 +50,7 @@ function Bmi() {
           backgroundColor: "bg-[#86DC3D]",
           color: "text-[#86DC3D]",
         });
+        setHeading("Good, Keep following a Healthy Diet");
         break;
 
       case "Overweight":
@@ -56,7 +58,14 @@ function Bmi() {
           backgroundColor: "bg-[#FFBD31]",
           color: "text-[#FFBD31]",
         });
-        setHeading("Good, Keep following a Healthy Diet");
+        setHeading("Risks Associated with being Overweight");
+        setPoints([
+          "Higher levels of LDL cholesterol, which is widely considered bad cholesterol, lower levels of HDL cholesterol, considered to be good cholesterol in moderation, and high levels of triglycerides",
+          "Osteoarthritis, a type of joint disease caused by breakdown of joint cartilage",
+          "Sleep apnea and breathing problems",
+          "Certain cancers (endometrial, breast, colon, kidney, gallbladder, liver)",
+          "Body pains and difficulty with certain physical functions",
+        ]);
         break;
 
       case "Obese":
@@ -69,6 +78,7 @@ function Bmi() {
           "High blood pressure",
           "Type II diabetes",
           "An increased risk of mortality compared to those with a  healthy BMI",
+          "Low quality of life",
           "Mental illnesses such as clinical depression, anxiety, and others",
         ]);
         break;
@@ -96,21 +106,21 @@ function Bmi() {
                 <span className={style.color}>{res.category}</span>
               </h3>
               <Progress value={progress} className={style.backgroundColor} />
-            </section>
-            <section>
-              <h3 className="text-3xl">{heading}</h3>
-              <ul>
-                {points.map((point, idx) => (
-                  <>
-                    <li
-                      className="ml-5 text-sm font-[Rubik] list-disc"
-                      key={idx}
-                    >
-                      {point}
-                    </li>
-                  </>
-                ))}
-              </ul>
+              <div className="mt-8">
+                <h3 className="text-lg font-[Rubik]">{heading}</h3>
+                <ul>
+                  {points.map((point, idx) => (
+                    <>
+                      <li
+                        className="ml-5 text-sm font-[Rubik] list-disc"
+                        key={idx}
+                      >
+                        {point}
+                      </li>
+                    </>
+                  ))}
+                </ul>
+              </div>
             </section>
           </main>
         </>

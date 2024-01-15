@@ -9,10 +9,14 @@ import {
 
 import Autoplay from "embla-carousel-autoplay";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 function HomeCarousel() {
   const carouselButton = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    setTimeout(() => carouselButton.current?.click(), 3000);
+  }, []);
 
   const blogPosts = [
     {
