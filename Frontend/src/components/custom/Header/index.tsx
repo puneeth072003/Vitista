@@ -92,7 +92,7 @@ function Header() {
                   Features
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="shadow shadow-[#00000017] bg-[#00000005]">
-                  <ul className="grid gap-1 p-4 md:w-[350px] md:grid-cols-2 lg:w-[350px] shadow shadow-[#00000017] bg-[#00000005]">
+                  <ul className="grid gap-1 p-2 md:w-[350px] md:grid-cols-2 lg:w-[350px] shadow shadow-[#00000017] bg-[#00000005]">
                     {headerRoutes.map((page, idx: number) => (
                       <li
                         key={idx}
