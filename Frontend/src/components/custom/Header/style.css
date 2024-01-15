@@ -15,7 +15,11 @@ div[data-visible="hamburger"] {
   display: none;
 }
 
-@media (max-width: 600px) {
+.active {
+  font-style: italic;
+}
+
+@media (max-width: 990px) {
   div[data-visible="large"] {
     display: none;
   }
