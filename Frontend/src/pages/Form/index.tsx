@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { dataFetch, reset } from "@/redux/slices/formPayload";
 
+import { switchState } from "@/redux/slices/loadingSpinner/index";
+
 import { IBackendData } from "@/interface";
 
 import TabletForm from "@/components/custom/TabletForm";
@@ -44,10 +46,15 @@ function Form() {
   const payload = useSelector((state: RootState) => state.formPayload);
 
   useEffect(() => {
-    axios
-      .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
-      .then((res) => dispatch(dataFetch(res.data)))
-      .then((res) => console.log(res.payload));
+    const fetchData = () => {
+      dispatch(switchState(true));
+      axios
+        .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
+        .then((res) => dispatch(dataFetch(res.data)))
+        .then(() => dispatch(switchState(true)));
+    };
+
+    fetchData();
 
     return () => {
       if (reset) {

@@ -4,6 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
+import { useDispatch } from "react-redux";
+import { switchState } from "@/redux/slices/loadingSpinner";
+
 import axios from "axios";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -11,11 +14,15 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 function RiskAssessment() {
   const [image, setImage] = useState<File | null>(null);
 
+  const dispatch = useDispatch();
+
   const handleUpload = async () => {
     if (!image) {
       console.error("Please select an image.");
       return;
     }
+
+    dispatch(switchState(true));
 
     const formData = new FormData();
     formData.append("image", image);
@@ -27,7 +34,8 @@ function RiskAssessment() {
         },
       })
       .then((res) => console.log(res.data))
-      .catch((err) => console.error("Error uploading image:", err));
+      .catch((err) => console.error("Error uploading image:", err))
+      .finally(() => dispatch(switchState(false)));
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
