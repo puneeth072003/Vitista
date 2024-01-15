@@ -50,3 +50,8 @@ export type IDietResult = {
   bmi: number;
   category: string;
 };
+
+export type IBMIResult = {
+  bmi: number;
+  category: string;
+};
