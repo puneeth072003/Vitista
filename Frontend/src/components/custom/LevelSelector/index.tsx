@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function DietSelect({
+export default function LevelSelector({
   activityLevel,
   setActivityLevel,
 }: {

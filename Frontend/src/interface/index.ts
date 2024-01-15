@@ -45,3 +45,8 @@ export type IHeaderRoutes = {
   href: string;
   description?: string;
 };
+
+export type IDietResult = {
+  bmi: number;
+  category: string;
+};
