@@ -14,11 +14,11 @@ function Record() {
 
   const [backendData, setBackendData] = useState<IPayload[]>([]);
 
-  const bookedDays1 = [new Date(2024, 0, 8), new Date(2024, 0, 9)];
-  const bookedStyle1 = { border: "2px solid black" };
+  // const bookedDays1 = [new Date(2024, 0, 8), new Date(2024, 0, 9)];
+  // const bookedStyle1 = { border: "2px solid black" };
 
-  const bookedDays2 = [new Date(2024, 0, 20), new Date(2024, 0, 21)];
-  const bookedStyle2 = { border: "2px solid red" };
+  // const bookedDays2 = [new Date(2024, 0, 20), new Date(2024, 0, 21)];
+  // const bookedStyle2 = { border: "2px solid red" };
 
   useEffect(() => {
     async () => {
@@ -53,12 +53,12 @@ function Record() {
               selected={selectedDate}
               onSelect={(data) => setSelectedDate(data ?? new Date())}
               modifiers={{
-                booked1: bookedDays1,
-                booked2: bookedDays2,
+                // booked1: bookedDays1,
+                // booked2: bookedDays2,
               }}
               modifiersStyles={{
-                booked1: bookedStyle1,
-                booked2: bookedStyle2,
+                // booked1: bookedStyle1,
+                // booked2: bookedStyle2,
               }}
               className="rounded-md border shadow bg-[#00000005] shadow-[#00000017]"
             />

@@ -25,26 +25,17 @@ export type IBackendData = {
   schedules: IPayload[];
 };
 
-type IConnectSuccess = {
+export type IConnectSuccess = {
   message: string;
   username: string;
-};
-
-type IConnectError = {
-  error: string;
-};
-
-export type IConnect = IConnectSuccess | IConnectError;
-
-export type IUserStorage = {
-  username: string;
-  firstName: string;
-  googleAuthToken: string;
-  dateOfJoin: string;
 };
 
 export type IConnectRegister = {
   username: string;
   firstName: string;
   dateOfJoin: string;
+};
+
+export type IUserStorage = IConnectRegister & {
+  googleAuthToken: string;
 };
