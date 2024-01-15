@@ -44,17 +44,17 @@ function Header() {
     {
       title: "Risk Assessment",
       href: "/algorithms",
-      description: "Track your BMI using our BMI Tracker",
+      description: "Check out our Risk Predictor to predict Breast Cancer",
     },
     {
       title: "Fitness Tracker",
       href: "/fit",
-      description: "Track your BMI using our BMI Tracker",
+      description: "Track your Sleep Cycle with out Integrated Fitness Tracker",
     },
     {
       title: "Diet Planner",
       href: username !== "" ? "/track" : "/connect",
-      description: "Track your BMI using our BMI Tracker",
+      description: "Plan a suitable Lifestyle with our Diet Planner",
     },
     {
       title: "BMI Tracker",
@@ -94,7 +94,10 @@ function Header() {
                 <NavigationMenuContent className="shadow shadow-[#00000017] bg-[#00000005]">
                   <ul className="grid gap-1 p-4 md:w-[350px] md:grid-cols-2 lg:w-[350px] shadow shadow-[#00000017] bg-[#00000005]">
                     {headerRoutes.map((page, idx: number) => (
-                      <li className="flex flex-col justify-start items-start p-2">
+                      <li
+                        key={idx}
+                        className="flex flex-col justify-start items-start p-2"
+                      >
                         <NavLink
                           className="font-[Ubuntu] text-[1rem] underline-effect"
                           key={idx}
