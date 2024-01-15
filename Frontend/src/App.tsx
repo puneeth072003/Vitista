@@ -10,7 +10,7 @@ import Form from "@/pages/Form";
 import Record from "@/pages/Record";
 import Connect from "@/pages/Connect";
 import Fit from "@/pages/Fit";
-import Diet from "@/pages/Diet";
+import PersonalTracker from "@/pages/PersonalTracker";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route path="/form" element={<Form />} />
         <Route path="/connect" element={<Connect />} />
         <Route path="/fit" element={<Fit />} />
-        <Route path="/diet" element={<Diet />} />
+        <Route path="/track" element={<PersonalTracker />} />
       </Routes>
       <Toaster />
     </>

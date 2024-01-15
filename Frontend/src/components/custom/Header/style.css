@@ -19,9 +19,14 @@ div[data-visible="hamburger"] {
   font-style: italic;
 }
 
-div[data-state="open"], div[data-state="closed"] {
+div[data-state="open"],
+div[data-state="closed"] {
   background-color: transparent;
 }
+
+div[role=dialog] {
+  background-color: hsl(0, 0%, 100%);
+} 
 
 @media (max-width: 990px) {
   div[data-visible="large"] {

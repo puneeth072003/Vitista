@@ -19,34 +19,14 @@ import { getFromLocalStorage } from "@/redux/slices/userStorage";
 
 import { IHeaderRoutes } from "@/interface";
 
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+
 import HeaderConnect from "../HeaderConnect";
 import HeaderHamburger from "../HeaderHamburger";
 
 import icon from "@/assets/icon.png";
 import "./style.css";
-
-const headerRoutes: IHeaderRoutes[] = [
-  {
-    title: "Risk Assessment",
-    href: "/algorithms",
-    description: "Track your BMI using our BMI Tracker",
-  },
-  {
-    title: "Fitness Tracker",
-    href: "/fit",
-    description: "Track your BMI using our BMI Tracker",
-  },
-  {
-    title: "Diet Planner",
-    href: "/diet",
-    description: "Track your BMI using our BMI Tracker",
-  },
-  {
-    title: "BMI Tracker",
-    href: "/bmi",
-    description: "Track your BMI using our BMI Tracker",
-  },
-];
 
 function Header() {
   const location = useLocation();
@@ -55,6 +35,33 @@ function Header() {
   useEffect(() => {
     dispatch(getFromLocalStorage());
   }, [dispatch]);
+
+  const username = useSelector(
+    (state: RootState) => state.userStorage.username
+  );
+
+  const headerRoutes: IHeaderRoutes[] = [
+    {
+      title: "Risk Assessment",
+      href: "/algorithms",
+      description: "Track your BMI using our BMI Tracker",
+    },
+    {
+      title: "Fitness Tracker",
+      href: "/fit",
+      description: "Track your BMI using our BMI Tracker",
+    },
+    {
+      title: "Diet Planner",
+      href: username !== "" ? "/track" : "/connect",
+      description: "Track your BMI using our BMI Tracker",
+    },
+    {
+      title: "BMI Tracker",
+      href: username !== "" ? "/track" : "/connect",
+      description: "Track your BMI using our BMI Tracker",
+    },
+  ];
 
   return (
     <>
@@ -89,7 +96,7 @@ function Header() {
                     {headerRoutes.map((page, idx: number) => (
                       <li className="flex flex-col justify-start items-start p-2">
                         <NavLink
-                          className="font-[Ubuntu] text-[1rem]"
+                          className="font-[Ubuntu] text-[1rem] underline-effect"
                           key={idx}
                           title={page.title}
                           to={page.href}
