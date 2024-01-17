@@ -57,15 +57,17 @@ function Connect() {
       .then((res) => {
         dispatch(setUsernameFromConnect(res.data.username));
         dispatch(setToLocalStorage());
-        setSuccess(true);
         setMessages("Login Successfull!");
+        setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
           navigate("/");
         }, 2000);
       })
-      .catch(() => {
-        setMessages("Invalid Username or Password");
+      .catch((err) => {
+        err?.response?.status === 400
+          ? setMessages("Invalid Username or Password")
+          : setMessages("Server Error");
         setError(true);
         setTimeout(() => {
           setError(false);
@@ -75,7 +77,7 @@ function Connect() {
   };
 
   const handleSignup = async () => {
-    dispatch(switchState(true))
+    dispatch(switchState(true));
     const payload = {
       Username: username,
       Password: password,
@@ -93,20 +95,24 @@ function Connect() {
 
         dispatch(setUserStorageFromConnect(data));
         dispatch(setToLocalStorage());
-        setSuccess(true);
         setMessages("Sign Up Successfull!");
+        setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
           navigate("/");
         }, 2000);
       })
-      .catch(() => {
+      .catch((err) => {
+        err?.response?.status === 400
+          ? setMessages("Username has been Taken. Try to set another Username.")
+          : setMessages("Server Error");
+
         setError(true);
-        setMessages("Username has been Taken. Try to set another Username.");
         setTimeout(() => {
           setError(false);
         }, 5000);
-      }).finally(() => dispatch(switchState(false)))
+      })
+      .finally(() => dispatch(switchState(false)));
   };
 
   return (
@@ -119,7 +125,7 @@ function Connect() {
           <>
             <Alert
               variant="destructive"
-              className="w-[80%] shadow shadow-[#00000017] bg-[#00000005]"
+              className="w-[80%] shadow shadow-[#00000017] bg-[#00000005] backdrop-blur"
             >
               <ExclamationTriangleIcon className="h-4 w-4" />
               <AlertTitle>Error</AlertTitle>
@@ -131,7 +137,7 @@ function Connect() {
           <>
             <Alert
               variant="default"
-              className="w-[80%] shadow shadow-[#00000017] bg-[#00000005]"
+              className="w-[80%] shadow shadow-[#00000017] bg-[#00000005] backdrop-blur"
             >
               <FontAwesomeIcon className="h-4 w-4" icon={faThumbsUp} />
               <AlertTitle>Success</AlertTitle>
