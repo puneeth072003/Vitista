@@ -49,17 +49,20 @@ function RiskAssessment() {
     <>
       <main className="flex flex-col justify-center items-center gap-[5rem] py-[1.5rem] px-6 lg:px-8">
         <section className="flex flex-col justify-center items-center gap-6 pt-16">
-          <h1 className="text-5xl font-[Ubuntu] text-center w-full">Risk Assessment</h1>
-          <p className="text-lg font-[Rubik]">
-            Body Mass Index (BMI) is a person's weight in kilograms (or pounds)
-            divided by the square of height in meters (or feet). A high BMI can
-            indicate high body fatness. BMI screens for weight categories that
-            may lead to health problems, but it does not diagnose the body
-            fatness or health of an individual.
+          <h1 className="text-5xl font-[Ubuntu] text-center w-full">
+            Risk Assessment
+          </h1>
+          <p className="text-lg font-[Rubik] w-4/5">
+            Our cutting-edge Risk Assessment Algorithm for detecting brain
+            tumors represents a significant advancement in medical technology.
+            Leveraging sophisticated machine learning techniques, the algorithm
+            analyzes intricate patterns within medical imaging data, such as MRI
+            scans, to identify potential indicators of brain tumors with
+            remarkable accuracy.
           </p>
         </section>
-        <section className="grid w-full max-w-sm items-center gap-1.5">
-          <Label htmlFor="picture">Picture</Label>
+        <section className="grid w-full max-w-sm items-center gap-3">
+          <Label htmlFor="picture">Enter the Image of your MRI Scanning</Label>
           <Input
             id="picture"
             type="file"
