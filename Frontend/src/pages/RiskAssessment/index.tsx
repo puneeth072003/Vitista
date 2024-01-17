@@ -62,7 +62,7 @@ function RiskAssessment() {
           </p>
         </section>
         <section className="grid w-full max-w-sm items-center gap-3">
-          <Label htmlFor="picture">Enter the Image of your MRI Scanning</Label>
+          <Label htmlFor="picture">Choose the Image of your MRI Scanning</Label>
           <Input
             id="picture"
             type="file"

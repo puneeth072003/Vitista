@@ -21,7 +21,7 @@ import { RootState } from "@/redux/store";
 
 import profile from "@/assets/default_profile_pic.png";
 
-function HeaderConnect() {
+function HeaderConnect({ visibility }: { visibility: boolean }) {
   const userInfo = useSelector((state: RootState) => state.userStorage);
   const joinedDate = new Date(userInfo.dateOfJoin);
 
@@ -29,7 +29,7 @@ function HeaderConnect() {
 
   return (
     <>
-      <NavigationMenuItem>
+      <NavigationMenuItem className={visibility ? "" : "invisible"}>
         <NavigationMenuLink className="font-medium">
           {userInfo.username === "" ? (
             <>
@@ -37,7 +37,7 @@ function HeaderConnect() {
                 <Button
                   disabled
                   className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]"
-                  style={{opacity: 1}}
+                  style={{ opacity: 1 }}
                 >
                   <Link
                     className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
@@ -48,10 +48,7 @@ function HeaderConnect() {
                   </Link>
                 </Button>
               ) : (
-                <Button
-                  
-                  className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]"
-                >
+                <Button className="bg-[#212121] hover:bg-[#000] hover:text-[#44D9E6]">
                   <Link
                     className="flex justify-center items-center gap-[0.5rem] font-[Poppins]"
                     to={"/connect"}

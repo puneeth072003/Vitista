@@ -43,7 +43,9 @@ function Connect() {
   const [firstName, setFirstName] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [messages, setMessages] = useState("");
+  const [messages, setMessages] = useState(
+    "Username has been Taken. Try to set another Username."
+  );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -125,11 +127,13 @@ function Connect() {
           <>
             <Alert
               variant="destructive"
-              className="w-[80%] shadow shadow-[#00000017] bg-[#00000005] backdrop-blur"
+              className="w-[80%] shadow shadow-[#00000017] bg-[#00000005] backdrop-blur absolute top-20"
             >
               <ExclamationTriangleIcon className="h-4 w-4" />
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>{messages}</AlertDescription>
+              <AlertTitle className="font-[Ubuntu]">Error</AlertTitle>
+              <AlertDescription className="font-[Poppins]">
+                {messages}
+              </AlertDescription>
             </Alert>
           </>
         )}
@@ -137,11 +141,13 @@ function Connect() {
           <>
             <Alert
               variant="default"
-              className="w-[80%] shadow shadow-[#00000017] bg-[#00000005] backdrop-blur"
+              className="w-[80%] shadow shadow-[#00000017] bg-[#00000005] backdrop-blur absolute top-20"
             >
               <FontAwesomeIcon className="h-4 w-4" icon={faThumbsUp} />
-              <AlertTitle>Success</AlertTitle>
-              <AlertDescription>{messages}</AlertDescription>
+              <AlertTitle className="font-[Ubuntu]">Success</AlertTitle>
+              <AlertDescription className="font-[Poppins]">
+                {messages}
+              </AlertDescription>
             </Alert>
           </>
         )}

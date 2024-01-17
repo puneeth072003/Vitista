@@ -1,5 +1,5 @@
 @media (max-width: 880px) {
-  div[data-place="form"] {
+  main[data-place="form"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
