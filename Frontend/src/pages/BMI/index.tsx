@@ -91,7 +91,9 @@ function Bmi() {
         <>
           <main className="flex flex-col justify-center items-center gap-[5rem] py-[1.5rem] px-6 lg:px-8">
             <section className="flex flex-col justify-center items-center gap-6 pt-16">
-              <h1 className="text-5xl font-[Ubuntu]">Weight Index Tracker</h1>
+              <h1 className="text-5xl font-[Ubuntu] text-center w-full">
+                Weight Index Tracker
+              </h1>
               <p className="text-lg font-[Rubik]">
                 Body Mass Index (BMI) is a person's weight in kilograms (or
                 pounds) divided by the square of height in meters (or feet). A

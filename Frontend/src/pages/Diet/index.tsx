@@ -15,7 +15,9 @@ function Bmi() {
         <>
           <main className="flex flex-col justify-center items-center gap-[5rem] py-[1.5rem] px-6 lg:px-8">
             <section className="flex flex-col justify-center items-center gap-6 pt-16">
-              <h1 className="text-5xl font-[Ubuntu]">NutriGuide</h1>
+              <h1 className="text-5xl font-[Ubuntu] text-center w-full">
+                NutriGuide
+              </h1>
               <p className="text-lg font-[Rubik]">
                 A diet containing adequate energy should be consumed to protect
                 the appropriate combination of weight and body composition.
