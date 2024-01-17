@@ -14,7 +14,7 @@ Vitista is a comprehensive personal healthcare app designed to empower individua
 | BMI Tracking                            | Display the calculated BMI along with information about the user's weight status. |
 | Breast Cancer Detection Algorithm       | Provide personalized diets based on user preferences, health and goals.           |
 | Diet Suggestions                        | Provide personalized diets based on user preferences, health and goals.           |
-| Integration with Google Fitness Tracker | Implement an algorithm that assesses breast cancer risk based on certain factors  |
+| Integration with Google Fitness Tracker | Implement an algorithm that assesses brain tumour risk based on certain factors   |
 | Sleep Cycle Monitoring                  | Analyze sleep patterns and provide suggestions for improving sleep quality.       |
 | Educational Resources                   | Include articles explaining the dietary recommendations and other Blogs           |
 | Mobile Optimization                     | Optimize the website for mobile devices for User Convinience.                     |
