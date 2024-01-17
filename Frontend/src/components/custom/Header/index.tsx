@@ -134,11 +134,8 @@ function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
-              {location.pathname !== "/connect" && (
-                <>
-                  <HeaderConnect />
-                </>
-              )}
+              <HeaderConnect visibility={location.pathname !== "/connect"} />
+              
             </NavigationMenuList>
           </NavigationMenu>
         </div>

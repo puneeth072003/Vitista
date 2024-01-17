@@ -38,7 +38,7 @@ function Record() {
       await axios
         .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
         .then((res) => setBackendData(res.data.schedules))
-        .then(() => dispatch(switchState(false)));
+        .finally(() => dispatch(switchState(false)));
     };
     fetchData();
   }, [dispatch]);
@@ -61,15 +61,15 @@ function Record() {
         className="flex flex-col justify-center items-center gap-[5rem] py-[3rem] px-6 lg:px-8 w-full h-full"
       >
         <section className="flex justify-center items-center gap-[5rem] px-6 lg:px-8 w-full h-full flex-wrap">
-          <div className="flex flex-col justify-center items-center">
-            <h1 className="font-[Poppins] text-[3rem] text-center">
+          <div className="flex flex-col justify-center items-center w-full">
+            <h1 className="font-[Poppins] text-[3rem] text-center w-f">
               {selectedDate.toLocaleString("default", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
               })}
             </h1>
-            <h1 className="font-[Rubik] text-[3rem] text-center">
+            <h1 className="font-[Rubik] text-[2rem] text-center w-full">
               {selectedDate.toLocaleDateString("default", { weekday: "long" })}
             </h1>
           </div>

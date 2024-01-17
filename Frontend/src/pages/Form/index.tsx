@@ -17,6 +17,7 @@ import { switchState } from "@/redux/slices/loadingSpinner/index";
 import { IBackendData } from "@/interface";
 
 import TabletForm from "@/components/custom/TabletForm";
+
 import "./style.css";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -51,7 +52,7 @@ function Form() {
       axios
         .get<IBackendData>(`${BACKEND_URL}/v1/getall`)
         .then((res) => dispatch(dataFetch(res.data)))
-        .then(() => dispatch(switchState(true)));
+        .finally(() => dispatch(switchState(false)));
     };
 
     fetchData();
