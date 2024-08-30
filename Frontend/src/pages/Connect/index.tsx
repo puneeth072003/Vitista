@@ -86,11 +86,11 @@ function Connect() {
     };
     await axios
       .post<IConnectSuccess>(`${BACKEND_URL}/v1/login`, payload)
-      .then((res) => {
+      .then(() => {
         const dateOfJoin = new Date().toString();
 
         const data: IConnectRegister = {
-          username: res.data.username,
+          username,
           firstName,
           dateOfJoin,
         };
