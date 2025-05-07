@@ -9,7 +9,7 @@ import {
   //   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { useEffect } from "react";
 
@@ -70,15 +70,15 @@ function Header() {
     <>
       <header className="flex justify-between items-center pt-[1rem] px-[7vw] pb-[1rem]">
         <div>
-          <a
+          <Link
             className="flex justify-center items-center gap-[0.5rem]"
-            href="https://github.com/puneeth072003/GfG-hackthon-project"
+            to="/"
           >
             <img src={icon} alt="logo" className="w-[1.5rem]" />
             <h1 className="text-[1.7rem] text-[#44D9E6] tracking-[0.20rem] font-extrabold font-overlock">
               Vitista
             </h1>
-          </a>
+          </Link>
         </div>
         <div data-visible="large">
           <NavigationMenu>
@@ -135,7 +135,6 @@ function Header() {
               </NavigationMenuItem>
 
               <HeaderConnect visibility={location.pathname !== "/connect"} />
-              
             </NavigationMenuList>
           </NavigationMenu>
         </div>
