@@ -4,6 +4,12 @@
 
 # Vitista: Your Personal Health Companion
 
+<h3>Demo Video</h3>
+<video width="600" autoplay loop muted>
+  <source src="./videos/vitista.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 Vitista is a comprehensive personal healthcare app designed to empower individuals on their journey to optimal well-being. With a user-centric approach, Vitista integrates cutting-edge technology and user-friendly features to provide a holistic solution for health monitoring, fitness management, and overall wellness.
 
 # Features
